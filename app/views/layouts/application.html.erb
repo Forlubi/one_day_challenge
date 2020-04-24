@@ -20,6 +20,15 @@
     <% javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" %>
     <% javascript_include_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" %>
 
+    <script>
+ 
+    document.addEventListener("turbolinks:load", function() {
+      $('#main').css({
+        'opacity':'1',
+        'transition': 'opacity 0.5s'
+      });
+    })
+    </script>
   </head>
   <body>
     <!-- <div class="container"> -->
