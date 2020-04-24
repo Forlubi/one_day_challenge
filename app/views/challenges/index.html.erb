@@ -1,8 +1,23 @@
+<script>
+  function resize(img) {
+    if (img.width() > img.height()) {
+          img.addClass("landscape")
+        }
+  }
+
+  // $(window).on('load', function() {
+  //   $('#main').css({
+  //     'opacity':'1',
+  //     'transition': 'opacity 0.5s'
+  //     });
+  // })
+</script>
+
+
 <% provide(:title, "Challenges") %>
 <p id="notice"><%= notice %></p>
 
-
-<main id="main">
+<main id="main" style="opacity:0">
   <!-- ======= Works Section ======= -->
   <section class="section site-portfolio">
     <div class="container">
@@ -28,7 +43,8 @@
           <div class="<%= challenge.category%> image-container col-sm-6 col-md-4 col-lg-4 mb-4">
             <a href="/challenges/<%=challenge.id%>" class="item-wrap fancybox">
               <div class="square img-hover-zoom">
-                <img src="<%= challenge.pic_link %>" alt="Image" class="image horizontal"/>
+                <img src="<%= challenge.pic_link %>" alt="Image" class="image"
+                onload="resize($(this))"/>
                 <div class="overlay">
                   <div class="text">
                     <h3><%= challenge.name %></h3>
@@ -241,6 +257,17 @@
 <%= render 'shared/add_btn'%>
 
 <script>
+
+
+// $(() => {
+//   $('img').each(function(){
+//       if ($(this).width() > $(this).height()) {
+//         $(this).addClass("landscape")
+//       }
+//     })
+// })
+
+
   // $(window).on('load', function() {
   //   $('img').each(function(){
   //     //console.log($(this))
@@ -251,13 +278,22 @@
   //   })
   // })
 
-  document.addEventListener("turbolinks:load", function() {
-      $('img').each(function(){
-      //console.log($(this))
-      //getDim($(this))
-      if ($(this).width() > $(this).height()) {
-        $(this).addClass("landscape")
-      }
-    })
-})
+//   document.addEventListener(" turbolinks:load", function() {
+//       $('img').each(function(){
+//       //console.log($(this))
+//       //getDim($(this))
+//       if ($(this).width() > $(this).height()) {
+//         $(this).addClass("landscape")
+//       }
+//     })
+// })
 </script>
+
+    <%# <script>
+ 
+        $('#main').css({
+          'opacity':'1',
+          'transition': 'opacity 0.5s'
+          });
+  
+    </script> %>
