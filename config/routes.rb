@@ -22,6 +22,7 @@ Rails.application.routes.draw do
  
   post '/participate/:challenge_id', to: 'users#participate'
   delete '/drop/:challenge_id', to: 'users#drop'
+  get '/test/:id', to: 'users#test'
 
   post '/favorite/:challenge_id', to: 'users#favorite'
   delete '/unfavorite/:challenge_id', to: 'users#unfavorite'
