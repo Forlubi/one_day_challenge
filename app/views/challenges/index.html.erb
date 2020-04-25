@@ -1,16 +1,16 @@
 <script>
-  function resize(img) {
-    if (img.width() > img.height()) {
-          img.addClass("landscape")
+    function resize(img) {
+        if (img.width() > img.height()) {
+            img.addClass("landscape")
         }
-  }
+    }
 
-  // $(window).on('load', function() {
-  //   $('#main').css({
-  //     'opacity':'1',
-  //     'transition': 'opacity 0.5s'
-  //     });
-  // })
+    // $(window).on('load', function() {
+    //   $('#main').css({
+    //     'opacity':'1',
+    //     'transition': 'opacity 0.5s'
+    //     });
+    // })
 </script>
 
 
@@ -26,177 +26,29 @@
           <h2>Ready to challenge yourself?</h2>
           <p class="mb-0">Join millions of challenges around the world</p>
         </div>
+
         <div class="col-md-12 col-lg-6 text-left text-lg-right" data-aos="fade-up" data-aos-delay="100">
           <div id="filters" class="filters">
-            <a href="#" data-filter="*" class="active">All</a>
-            <a href="#" data-filter=".Life">Life</a>
-            <a href="#" data-filter=".Workout">Workout</a>
-            <a href="#" data-filter=".Habbit">Habbit</a>
-            <a href="#" data-filter=".Study">Study</a>
-            <a href="#" data-filter=".philanthropy">Philanthropy</a>
+            <%= link_to "All", "/filter/#{'All'}", remote: true, class: 'active' %>
+            <%= link_to "Life", "/filter/#{'Life'}", remote: true %>
+            <%= link_to "Workout", "/filter/#{'Workout'}", remote: true %>
+            <%= link_to "Habbit", "/filter/#{'Habbit'}", remote: true %>
+            <%= link_to "Study", "/filter/#{'Study'}", remote: true %>
+            <%= link_to "Philanthropy", "/filter/#{'Philanthropy'}", remote: true %>
           </div>
         </div>
       </div>
 
-      <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
-        <% @challenges.each do |challenge| %>
-          <div class="<%= challenge.category%> image-container col-sm-6 col-md-4 col-lg-4 mb-4">
-            <a href="/challenges/<%=challenge.id%>" class="item-wrap fancybox">
-              <div class="square img-hover-zoom">
-                <img src="<%= challenge.pic_link %>" alt="Image" class="image"
-                onload="resize($(this))"/>
-                <div class="overlay">
-                  <div class="text">
-                    <h3><%= challenge.name %></h3>
-                    <p style="color: #fed136; font-weight: bold;"><%= challenge.coins %> coins</p>
-                  </div>
-                </div>
-              </div>
-            </a>
+      <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
+          <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
+            <%= render 'challenges/portfolio', challenges: @challenges %>
           </div>
-        <% end %>
+        </div>
       </div>
 
-
-<!--      new template-->
-<!--      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">-->
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link active" id="pills-all-tab" data-toggle="pill" href="#pills-all" role="tab" aria-controls="pills-all" aria-selected="true">All</a>-->
-<!--        </li>-->
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link" id="pills-life-tab" data-toggle="pill" href="#pills-life" role="tab" aria-controls="pills-life" aria-selected="false">Life</a>-->
-<!--        </li>-->
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link" id="pills-workout-tab" data-toggle="pill" href="#pills-workout" role="tab" aria-controls="pills-workout" aria-selected="false">Workout</a>-->
-<!--        </li>-->
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link" id="pills-habit-tab" data-toggle="pill" href="#pills-habit" role="tab" aria-controls="pills-habit" aria-selected="true">Habit</a>-->
-<!--        </li>-->
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link" id="pills-study-tab" data-toggle="pill" href="#pills-study" role="tab" aria-controls="pills-study" aria-selected="true">Study</a>-->
-<!--        </li>-->
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link" id="pills-Philanthropy-tab" data-toggle="pill" href="#pills-Philanthropy" role="tab" aria-controls="pills-Philanthropy" aria-selected="true">Philanthropy</a>-->
-<!--        </li>-->
-<!--      </ul>-->
-<!--      <div class="tab-content" id="pills-tabContent">-->
-<!--        <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">-->
-<!--          <div class="row text-center">-->
-            <%# if !@challenges.nil?%>
-              <%# @challenges.all.each do |challenge| %>
-<!--                <div class="col-lg-3 col-md-6 mb-4">-->
-<!--                  <div class="card h-100">-->
-                    <%#= link_to image_tag(challenge.pic_link, alt: challenge.name, class: "card-img-top"), challenge %>
-<!--                    <div class="card-body">-->
-<!--                      <h4> <%#= link_to challenge.name, challenge, class: "card-title" %></h4>-->
-<!--                      <p class="card-text"><%#= challenge.description[0..100] + "..." %></p>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
-              <%# end %>
-            <%# end %>
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="tab-pane fade" id="pills-life" role="tabpanel" aria-labelledby="pills-life-tab">-->
-<!--          <div class="row text-center">-->
-            <%# if !@challenges.nil?%>
-              <%# @challenges.each do |challenge| %>
-                <%# if challenge.category == 'Life' %>
-<!--                  <div class="col-lg-3 col-md-6 mb-4">-->
-<!--                    <div class="card h-100">-->
-                      <%#= link_to image_tag(challenge.pic_link, alt: challenge.name, class: "card-img-top"), challenge %>
-<!--                      <div class="card-body">-->
-<!--                        <h4> <%#= link_to challenge.name, challenge, class: "card-title" %></h4>-->
-<!--                        <p class="card-text"><%#= challenge.description[0..100] + "..." %></p>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                  </div>-->
-                <%# end %>
-                <%# end %>
-            <%# end %>
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="tab-pane fade" id="pills-workout" role="tabpanel" aria-labelledby="pills-workout-tab">-->
-<!--          <div class="row text-center">-->
-            <%# if !@challenges.nil?%>
-              <%# @challenges.each do |challenge| %>
-                <%# if challenge.category == 'Workout' %>
-<!--                  <div class="col-lg-3 col-md-6 mb-4">-->
-<!--                    <div class="card h-100">-->
-                      <%#= link_to image_tag(challenge.pic_link, alt: challenge.name, class: "card-img-top"), challenge %>
-<!--                      <div class="card-body">-->
-<!--                        <h4> <%#= link_to challenge.name, challenge, class: "card-title" %></h4>-->
-<!--                        <p class="card-text"><%#= challenge.description[0..100] + "..." %></p>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                  </div>-->
-                <%# end %>
-              <%# end %>
-            <%# end %>
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="tab-pane fade" id="pills-habit" role="tabpanel" aria-labelledby="pills-habit-tab">-->
-<!--          <div class="row text-center">-->
-            <%# if !@challenges.nil?%>
-              <%# @challenges.each do |challenge| %>
-                <%# if challenge.category == 'Habbit' %>
-<!--                  <div class="col-lg-3 col-md-6 mb-4">-->
-<!--                    <div class="card h-100">-->
-                      <%#= link_to image_tag(challenge.pic_link, alt: challenge.name, class: "card-img-top"), challenge %>
-<!--                      <div class="card-body">-->
-<!--                        <h4> <%#= link_to challenge.name, challenge, class: "card-title" %></h4>-->
-<!--                        <p class="card-text"><%#= challenge.description[0..100] + "..." %></p>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                  </div>-->
-                <%# end %>
-              <%# end %>
-            <%# end %>
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="tab-pane fade" id="pills-study" role="tabpanel" aria-labelledby="pills-study-tab">-->
-<!--          <div class="row text-center">-->
-            <%# if !@challenges.nil?%>
-              <%# @challenges.each do |challenge| %>
-                <%# if challenge.category == 'Study' %>
-<!--                  <div class="col-lg-3 col-md-6 mb-4">-->
-<!--                    <div class="card h-100">-->
-                      <%#= link_to image_tag(challenge.pic_link, alt: challenge.name, class: "card-img-top"), challenge %>
-<!--                      <div class="card-body">-->
-<!--                        <h4> <%#= link_to challenge.name, challenge, class: "card-title" %></h4>-->
-<!--                        <p class="card-text"><%#= challenge.description[0..100] + "..." %></p>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                  </div>-->
-                <%# end %>
-              <%# end %>
-            <%# end %>
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="tab-pane fade" id="pills-Philanthropy" role="tabpanel" aria-labelledby="pills-Philanthropy-tab">-->
-<!--          <div class="row text-center">-->
-            <%# if !@challenges.nil?%>
-              <%# @challenges.each do |challenge| %>
-                <%# if challenge.category == 'philanthropy' %>
-<!--                  <div class="col-lg-3 col-md-6 mb-4">-->
-<!--                    <div class="card h-100">-->
-                      <%#= link_to image_tag(challenge.pic_link, alt: challenge.name, class: "card-img-top"), challenge %>
-<!--                      <div class="card-body">-->
-<!--                        <h4> <%#= link_to challenge.name, challenge, class: "card-title" %></h4>-->
-<!--                        <p class="card-text"><%#= challenge.description[0..100] + "..." %></p>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                  </div>-->
-                <%# end %>
-              <%# end %>
-            <%# end %>
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
-
     </div>
-    <%= render 'shared/add_btn'%>
+    <%= render 'shared/add_btn' %>
   </section><!-- End  Works Section -->
 </main><!-- End #main -->
 
@@ -218,82 +70,82 @@
 
 <table>
   <thead>
-    <tr>
-      <th>Name</th>
-      <th>Category</th>
-      <th>Description</th>
-      <th>Coins</th>
-      <th>Duration</th>
-      <th>Participant number</th>
-      <th>Failed number</th>
-      <th>Deadline</th>
-      <th colspan="3"></th>
-    </tr>
+  <tr>
+    <th>Name</th>
+    <th>Category</th>
+    <th>Description</th>
+    <th>Coins</th>
+    <th>Duration</th>
+    <th>Participant number</th>
+    <th>Failed number</th>
+    <th>Deadline</th>
+    <th colspan="3"></th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @challenges.each do |challenge| %>
-      <tr>
-        <td><%= link_to challenge.name, challenge %></td>
-        <td><%= challenge.category %></td>
-        <td><%= challenge.description %></td>
-        <td><%= challenge.coins %></td>
-        <td><%= challenge.duration %></td>
-        <td><%= challenge.participant_number %></td>
-        <td><%= challenge.failed_number %></td>
-        <td><%= challenge.deadline %></td>
-        <td><%= link_to 'Participate', "/participate/#{challenge.id}", class: 'readmore', method: :post %></td>
-        <td><%= link_to 'Favorite', "/favorite/#{challenge.id}", class: 'readmore', method: :post %></td>
-        <!-- <td><%= link_to 'Show', challenge %></td> -->
-        <td><%= link_to 'Edit', edit_challenge_path(challenge) %></td>
-        <!-- <td><%= link_to 'Destroy', challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
-      </tr>
-    <% end %>
+  <% @challenges.each do |challenge| %>
+    <tr>
+      <td><%= link_to challenge.name, challenge %></td>
+      <td><%= challenge.category %></td>
+      <td><%= challenge.description %></td>
+      <td><%= challenge.coins %></td>
+      <td><%= challenge.duration %></td>
+      <td><%= challenge.participant_number %></td>
+      <td><%= challenge.failed_number %></td>
+      <td><%= challenge.deadline %></td>
+      <td><%= link_to 'Participate', "/participate/#{challenge.id}", class: 'readmore', method: :post %></td>
+      <td><%= link_to 'Favorite', "/favorite/#{challenge.id}", class: 'readmore', method: :post %></td>
+      <!-- <td><%= link_to 'Show', challenge %></td> -->
+      <td><%= link_to 'Edit', edit_challenge_path(challenge) %></td>
+      <!-- <td><%= link_to 'Destroy', challenge, method: :delete, data: {confirm: 'Are you sure?'} %></td> -->
+    </tr>
+  <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= render 'shared/add_btn'%>
+<%= render 'shared/add_btn' %>
 
 <script>
 
 
-// $(() => {
-//   $('img').each(function(){
-//       if ($(this).width() > $(this).height()) {
-//         $(this).addClass("landscape")
-//       }
-//     })
-// })
+    // $(() => {
+    //   $('img').each(function(){
+    //       if ($(this).width() > $(this).height()) {
+    //         $(this).addClass("landscape")
+    //       }
+    //     })
+    // })
 
 
-  // $(window).on('load', function() {
-  //   $('img').each(function(){
-  //     //console.log($(this))
-  //     //getDim($(this))
-  //     if ($(this).width() > $(this).height()) {
-  //       $(this).addClass("landscape")
-  //     }
-  //   })
-  // })
+    // $(window).on('load', function() {
+    //   $('img').each(function(){
+    //     //console.log($(this))
+    //     //getDim($(this))
+    //     if ($(this).width() > $(this).height()) {
+    //       $(this).addClass("landscape")
+    //     }
+    //   })
+    // })
 
-//   document.addEventListener(" turbolinks:load", function() {
-//       $('img').each(function(){
-//       //console.log($(this))
-//       //getDim($(this))
-//       if ($(this).width() > $(this).height()) {
-//         $(this).addClass("landscape")
-//       }
-//     })
-// })
+    //   document.addEventListener(" turbolinks:load", function() {
+    //       $('img').each(function(){
+    //       //console.log($(this))
+    //       //getDim($(this))
+    //       if ($(this).width() > $(this).height()) {
+    //         $(this).addClass("landscape")
+    //       }
+    //     })
+    // })
 </script>
 
-    <%# <script>
- 
+<%# <script>
+
         $('#main').css({
           'opacity':'1',
           'transition': 'opacity 0.5s'
           });
-  
+
     </script> %>

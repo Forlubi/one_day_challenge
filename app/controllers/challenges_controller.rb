@@ -8,6 +8,23 @@ class ChallengesController < ApplicationController
     # FIXME logged out user can see challenges, error when try to participate (Kuan-Yu)
   end
 
+  def filter
+    if params[:filter] == 'Life'
+      challenges = Challenge.where(category: 'Life')
+    elsif params[:filter] == 'Workout'
+      challenges = Challenge.where(category: 'Workout')
+    elsif params[:filter] == 'Habbit'
+      challenges = Challenge.where(category: 'Habbit')
+    elsif params[:filter] == 'Study'
+      challenges = Challenge.where(category: 'Study')
+    elsif params[:filter] == 'Philanthropy'
+      challenges = Challenge.where(category: 'philanthropy')
+    else
+      challenges = Challenge.all
+    end
+    render 'challenges/filter_result', locals: {challenges: challenges, filter: params[:filter]}
+  end
+
   # GET /challenges/1
   # GET /challenges/1.json
   def show
@@ -64,13 +81,14 @@ class ChallengesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_challenge
-      @challenge = Challenge.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def challenge_params
-      params.require(:challenge).permit(:name, :category, :description, :coins, :duration, :participant_number, :failed_number, :deadline)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_challenge
+    @challenge = Challenge.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def challenge_params
+    params.require(:challenge).permit(:name, :category, :description, :coins, :duration, :participant_number, :failed_number, :deadline)
+  end
 end

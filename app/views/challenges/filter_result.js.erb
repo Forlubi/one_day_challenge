@@ -1,0 +1,3 @@
+$("#portfolio-grid").html("<%= escape_javascript(render partial: 'challenges/portfolio', locals: { challenges: challenges } ) %>");
+$(`#filters a`).removeClass('active')
+$(`#filters a:contains('<%= filter %>')`).addClass('active')
