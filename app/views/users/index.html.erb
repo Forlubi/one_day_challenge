@@ -5,11 +5,11 @@
 
 
   <h1>Leaderboard</h1>
-<hr></hr>
+  <hr></hr>
 
-<% puts @users.class.name %>
-<div id="exTab1"> 
-<ul class="nav nav-pills filters">
+  <% puts @users.class.name %>
+  <div id="exTab1">
+    <ul class="nav nav-pills filters">
       <li class="active">
         <a href="#1a" data-toggle="tab">By Coins</a>
       </li>
@@ -19,84 +19,84 @@
       </li>
 
     </ul>
-  <hr></hr>
-      <div class="tab-content clearfix">
-        <div class="tab-pane active" id="1a">
-          <h4>
-            <table class="table-striped text-center">
+    <hr></hr>
+    <div class="tab-content clearfix">
+      <div class="tab-pane active" id="1a">
+        <h4>
+          <table class="w-100 table-striped text-center">
             <thead>
-              <tr>
-                <th>Rank</th>
-                <th>Name</th>
-                <th>Stats</th>
-              </tr>
+            <tr>
+              <th>Rank</th>
+              <th>Name</th>
+              <th>Stats</th>
+            </tr>
             </thead>
 
             <tbody>
-              <% display_by("coins", @users).each_with_index do |user, i| %>
-                <tr>
-                  <td><%= i+1 %></td>
-                  <td><%= link_to user.name, user %></td>
-                  <td><%= user.coins %></td>
-                </tr>
-              <% end %>
-            </tbody>
-            </table>
-          </h4>
-        </div>
-
-        <div class="tab-pane" id="2a">
-          <h4>
-            <table class="table-striped text-center">
-            <thead>
+            <% display_by("coins", @users).each_with_index do |user, i| %>
               <tr>
-                <th>Rank</th>
-                <th>Name</th>
-                <th>Stats</th>
+                <td><%= i + 1 %></td>
+                <td><%= link_to user.name, user %></td>
+                <td><%= user.coins %></td>
               </tr>
-            </thead>
-
-            <tbody>
-              <% display_by("check_ins", @users).each_with_index do |user, i| %>
-                <tr>
-                  <td><%= i+1 %></td>
-                  <td><%= link_to user.name, user %></td>
-                  <td><%= user.chechin_number %></td>
-                </tr>
-              <% end %>
+            <% end %>
             </tbody>
-            </table>
-          </h4>
-        </div>
-
-        <div class="tab-pane" id="3a">
-          <h4>
-            <table class="table-striped text-center">
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>Name</th>
-                <th>Stats</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <% display_by("challenges", @users).each_with_index do |user, i| %>
-                <tr>
-                  <td><%= i+1 %></td>
-                  <td><%= link_to user.name, user %></td>
-                  <td><%= user.challenge_number %></td>
-                </tr>
-              <% end %>
-            </tbody>
-            </table>
-          </h4>
-        </div>
+          </table>
+        </h4>
       </div>
-</div>
-<br>
 
-<%= link_to 'New User', new_user_registration_url %>
+      <div class="tab-pane" id="2a">
+        <h4>
+          <table class="w-100 table-striped text-center">
+            <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Name</th>
+              <th>Stats</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% display_by("check_ins", @users).each_with_index do |user, i| %>
+              <tr>
+                <td><%= i + 1 %></td>
+                <td><%= link_to user.name, user %></td>
+                <td><%= user.chechin_number %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </h4>
+      </div>
+
+      <div class="tab-pane" id="3a">
+        <h4>
+          <table class="w-100 table-striped text-center">
+            <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Name</th>
+              <th>Stats</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% display_by("challenges", @users).each_with_index do |user, i| %>
+              <tr>
+                <td><%= i + 1 %></td>
+                <td><%= link_to user.name, user %></td>
+                <td><%= user.challenge_number %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </h4>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <%= link_to 'New User', new_user_registration_url %>
 
 </div>
 </div>
@@ -105,6 +105,19 @@
 
 <!-- Bootstrap core JavaScript
     ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<script>
+
+    let icon = ['<i class="fas fa-crown" style="color: brown"></i>', '<i class="fas fa-crown" style="color: silver"></i>', '<i class="fas fa-crown" style="color: gold"></i>'];
+    $('.tab-pane').each(function(){
+        let count = 2;
+        $(this).find('tbody tr').each(function () {
+            if (count >= 0) {
+                $(this).find('td').first().html(icon[count--])
+            }
+        })
+    });
+</script>

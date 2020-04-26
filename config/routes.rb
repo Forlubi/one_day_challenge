@@ -26,4 +26,5 @@ Rails.application.routes.draw do
   post '/favorite/:challenge_id', to: 'users#favorite'
   delete '/unfavorite/:challenge_id', to: 'users#unfavorite'
 
+  get '/filter/:filter', to: 'challenges#filter'
 end
