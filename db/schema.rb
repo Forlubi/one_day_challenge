@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_21_205934) do
+ActiveRecord::Schema.define(version: 2020_04_26_221557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2020_04_21_205934) do
     t.datetime "deadline"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "pic_link"
+    t.string "pic_link", default: "https://www.pikpng.com/pngl/b/71-712706_challenge-logo-challenge-tv-logo-clipart.png"
   end
 
   create_table "favorites", force: :cascade do |t|
