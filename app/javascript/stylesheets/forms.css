@@ -209,15 +209,18 @@ textarea.form-input {
 .form-checkbox input:focus + .form-icon,
 .form-radio input:focus + .form-icon,
 .form-switch input:focus + .form-icon {
-	border-color: #5755d9;
+	/* border-color: #5755d9; */
+	border-color: #f0ad4e;
 	box-shadow: 0 0 0 .1rem rgba(87, 85, 217, .2);
 }
 
 .form-checkbox input:checked + .form-icon,
 .form-radio input:checked + .form-icon,
 .form-switch input:checked + .form-icon {
-	background: #5755d9;
-	border-color: #5755d9;
+	/* background: #5755d9;
+	border-color: #5755d9; */
+	background: #f0ad4e;
+	border-color: #f0ad4e;
 }
 
 .form-checkbox .form-icon,
