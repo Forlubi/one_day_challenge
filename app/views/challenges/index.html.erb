@@ -32,7 +32,7 @@
             <%= link_to "All", "/filter/#{'All'}", remote: true, class: 'active' %>
             <%= link_to "Life", "/filter/#{'Life'}", remote: true %>
             <%= link_to "Workout", "/filter/#{'Workout'}", remote: true %>
-            <%= link_to "Habbit", "/filter/#{'Habbit'}", remote: true %>
+            <%= link_to "Habit", "/filter/#{'Habbit'}", remote: true %>
             <%= link_to "Study", "/filter/#{'Study'}", remote: true %>
             <%= link_to "Philanthropy", "/filter/#{'Philanthropy'}", remote: true %>
           </div>
@@ -66,47 +66,47 @@
 
 
 
-<h1>Challenges</h1>
+<!--<h1>Challenges</h1>-->
 
-<table>
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Category</th>
-    <th>Description</th>
-    <th>Coins</th>
-    <th>Duration</th>
-    <th>Participant number</th>
-    <th>Failed number</th>
-    <th>Deadline</th>
-    <th colspan="3"></th>
-  </tr>
-  </thead>
+<!--<table>-->
+<!--  <thead>-->
+<!--  <tr>-->
+<!--    <th>Name</th>-->
+<!--    <th>Category</th>-->
+<!--    <th>Description</th>-->
+<!--    <th>Coins</th>-->
+<!--    <th>Duration</th>-->
+<!--    <th>Participant number</th>-->
+<!--    <th>Failed number</th>-->
+<!--    <th>Deadline</th>-->
+<!--    <th colspan="3"></th>-->
+<!--  </tr>-->
+<!--  </thead>-->
 
-  <tbody>
-  <% @challenges.each do |challenge| %>
-    <tr>
-      <td><%= link_to challenge.name, challenge %></td>
-      <td><%= challenge.category %></td>
-      <td><%= challenge.description %></td>
-      <td><%= challenge.coins %></td>
-      <td><%= challenge.duration %></td>
-      <td><%= challenge.participant_number %></td>
-      <td><%= challenge.failed_number %></td>
-      <td><%= challenge.deadline %></td>
-      <td><%= link_to 'Participate', "/participate/#{challenge.id}", class: 'readmore', method: :post %></td>
-      <td><%= link_to 'Favorite', "/favorite/#{challenge.id}", class: 'readmore', method: :post %></td>
-      <!-- <td><%= link_to 'Show', challenge %></td> -->
-      <td><%= link_to 'Edit', edit_challenge_path(challenge) %></td>
-      <!-- <td><%= link_to 'Destroy', challenge, method: :delete, data: {confirm: 'Are you sure?'} %></td> -->
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<!--  <tbody>-->
+  <%# @challenges.each do |challenge| %>
+<!--    <tr>-->
+<!--      <td><%#= link_to challenge.name, challenge %></td>-->
+<!--      <td><%#= challenge.category %></td>-->
+<!--      <td><%#= challenge.description %></td>-->
+<!--      <td><%#= challenge.coins %></td>-->
+<!--      <td><%#= challenge.duration %></td>-->
+<!--      <td><%#= challenge.participant_number %></td>-->
+<!--      <td><%#= challenge.failed_number %></td>-->
+<!--      <td><%#= challenge.deadline %></td>-->
+<!--      <td><%#= link_to 'Participate', "/participate/#{challenge.id}", class: 'readmore', method: :post %></td>-->
+<!--      <td><%#= link_to 'Favorite', "/favorite/#{challenge.id}", class: 'readmore', method: :post %></td>-->
+<!--       <td><%#= link_to 'Show', challenge %></td>-->
+<!--      <td><%#= link_to 'Edit', edit_challenge_path(challenge) %></td>-->
+<!--       <td><%#= link_to 'Destroy', challenge, method: :delete, data: {confirm: 'Are you sure?'} %></td>-->
+<!--    </tr>-->
+  <%# end %>
+<!--  </tbody>-->
+<!--</table>-->
 
-<br>
+<!--<br>-->
 
-<%= render 'shared/add_btn' %>
+<%#= render 'shared/add_btn' %>
 
 <script>
 
