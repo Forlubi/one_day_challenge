@@ -14,6 +14,21 @@ module UsersHelper
   	end
   end
 
+  def greeting(user)
+    greeting = "Good "
+    time = Time.now.hour
+    if time < 12 and time > 5
+      greeting += "morning"
+    elsif time < 17
+      greeting += "afternoon"
+    elsif time < 22
+      greeting += "evening"
+    else
+      greeting += "night"
+    end
+    return "#{greeting}, #{user.name}!"
+  end
+
   def display_by(key, users)
     
     case key
