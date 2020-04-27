@@ -88,10 +88,10 @@
                 <div class="row tab">
                   <div class="col-lg-12">
 
-                    <button class="tablink" onclick="openPage('Home', event, 'red')">Home</button>
-                    <button class="tablink" onclick="openPage('News', event, 'green')" id="defaultOpen">News</button>
-                    <button class="tablink" onclick="openPage('Contact', event, 'blue')">Contact</button>
-                    <button class="tablink" onclick="openPage('About', event, 'orange')">About</button>
+                    <button class="tablink" onclick="openPage('Home', event, 'red')" id="defaultOpen">Activities</button>
+                    <button class="tablink" onclick="openPage('News', event, 'green')">Participation</button>
+                    <button class="tablink" onclick="openPage('Contact', event, 'blue')">My Challenge</button>
+                    <button class="tablink" onclick="openPage('About', event, 'orange')">Acheivements</button>
 
                     <div id="Home" class="tabcontent">
                       <h3>Home</h3>
@@ -109,8 +109,8 @@
                     </div>
 
                     <div id="About" class="tabcontent">
-                      <h3>About</h3>
-                      <p>Who we are and what we do.</p>
+                      <h3>Acheivements</h3>
+                      <p>User's acheivements will go here</p>
                     </div>
 
 
@@ -580,6 +580,8 @@ h1 {
 /*tab*/
 /*Source https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_full_page_tabs*/
 
+button:focus {outline:0;}
+
 .tab{
   margin-top: 3rem;
 }
@@ -602,7 +604,7 @@ body, html {
   border-bottom: 6px solid #ccc!important;
   outline: none;
   cursor: pointer;
-  padding: 14px 16px;
+  padding: 8px 12px;
   font-size: 17px;
   width: 25%;
 }
@@ -623,10 +625,10 @@ body, html {
   height: 100%;
 }
 
-#Home {background-color: white;}
-#News {background-color: white;}
-#Contact {background-color: white;}
-#About {background-color: white;}
+#Home {background-color: transparent;}
+#News {background-color: transparent;}
+#Contact {background-color: transparent;}
+#About {background-color: transparent;}
 </style>
 
 <script>
