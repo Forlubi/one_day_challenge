@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth' },
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth',
+                                    registrations: 'users/registrations' },
                      path_names: {
                                   :verify_authy => "/verify-token",
                                   :enable_authy => "/enable-two-factor",
