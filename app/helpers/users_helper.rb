@@ -26,7 +26,7 @@ module UsersHelper
     else
       greeting += "night"
     end
-    return "#{greeting}, #{user.name}!"
+    return "#{greeting}"
   end
 
   def display_by(key, users)
