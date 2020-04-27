@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
   # include SessionsHelper
   # include UsersHelper
-  protect_from_forgery with: :exception
+  # protect_from_forgery with: :exception
+  protect_from_forgery with: :exception, prepend: true
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 

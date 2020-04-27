@@ -1,4 +1,4 @@
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "card-body" }) do |f| %>
+<%= simple_form_for(:user, as: resource_name, url: session_path(resource_name), html: { class: "card-body" }) do |f| %>
 
   <div class="form-group">
     <%= f.input :email,

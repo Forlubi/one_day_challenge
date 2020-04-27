@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth' }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth' },
+                     path_names: {
+                                  :verify_authy => "/verify-token",
+                                  :enable_authy => "/enable-two-factor",
+                                  :verify_authy_installation => "/verify-installation",
+                                  :authy_onetouch_status => "/onetouch-status"
+                                }
+
   # get 'sessions/new'
   # get 'pages/home'
   resources :users

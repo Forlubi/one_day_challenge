@@ -3,6 +3,14 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
+
+  # ==> Devise Authy Authentication Extension
+  # How long should the user's device be remembered for.
+  # config.authy_remember_device = 1.month
+
+  # Should Authy OneTouch be enabled?
+  # config.authy_enable_onetouch = false
+
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
@@ -300,4 +308,6 @@ Devise.setup do |config|
   # config.omniauth :facebook, '1337855719935622', '2572ff50a89d8c2b99643cd121d391e6', scope: 'public_profile,email', prompt: 'consent'
   config.omniauth :github, '5d5dba5966c1a33551d3', '1f0dac7b35e2f1547c0e563bf91ac279090bb53d', scope: 'user,public_repo', prompt: 'consent'
   config.omniauth :twitter, 'Wi3ACY45pi2PBWJm5ww3shXPk', 'vpu7kyXnwOdzp6VgcBRP1NZL3o5kts5GbIpYfqG1KMY2HkEJc6', prompt: 'consent'
+
+  config.authy_enable_onetouch = true
 end
