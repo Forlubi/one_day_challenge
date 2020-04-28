@@ -96,7 +96,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <%= form.text_area :description, placeholder: "Description*", class: 'form-control', style: "width: 100%; height: 245px;" %>
+            <%= form.text_area :description, placeholder: "Description*", class: 'form-control', style: "width: 100%; height: 325px;" %>
           </div>
         </div>
         <div class="col-md-6">
@@ -109,6 +109,10 @@
           <div class="form-group">
             <%= form.label :image %>
             <%= form.file_field :image, accept: 'image/png,image/jpeg', class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= form.label :video %>
+            <%= form.file_field :video, accept: 'video/mp4', class: 'form-control' %>
           </div>
           <div class="form-group">
             <input type="submit" name="btnSubmit" class="btn btn-primary" value="Create Challenge"/>
