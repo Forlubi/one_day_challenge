@@ -25,11 +25,14 @@
                         class: "form-label",
                         input_html: { autocomplete: "new-password" } %>
         </div>
-
         <div class="actions">
-            <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
+            <%= f.button :submit, "Sign Up", class: "btn btn-primary" %>
         </div>
         
+        <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+            <h6>A confirmation will be sent to you by email after you click Sign Up button, please check your email account for instructions.</h6>
+        <% end %>
+
         <a href="#LogInModal" data-toggle="modal" data-dismiss="modal">Log In</a></br >
 
         <%- resource_class.omniauth_providers.each do |provider| %>
