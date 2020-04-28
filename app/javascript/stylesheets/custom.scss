@@ -195,3 +195,8 @@ img.landscape {
 .img-hover-zoom:hover img {
   transform: scale(1.5);
 }
+
+a.card-title {
+  text-decoration: none;
+  font-size: 1rem;
+}
