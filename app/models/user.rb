@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :histories
   has_many :his_challenges, through: :histories, source: :challenge
 
+  has_one_attached :avatar
 
   def self.create_from_provider_data(provider_data)
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do | user |

@@ -41,6 +41,8 @@ gem 'omniauth-twitter'
 # Use ActiveRecord Sessions
 gem 'activerecord-session_store'
 
+gem "aws-sdk-s3", require: false
+
 group :development, :test do
   gem 'byebug',  '11.0.1', platforms: [:mri, :mingw, :x64_mingw]
 end

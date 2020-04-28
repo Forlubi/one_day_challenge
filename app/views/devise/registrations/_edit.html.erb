@@ -16,6 +16,10 @@
         </div>
 
         <div class="form-group">
+            <%= f.input :avatar, as: :file, input_html: { accept: 'image/png,image/jpeg' } %>
+        </div>
+
+        <div class="form-group">
         <%= f.input :password,
                     hint: "leave it blank if you don't want to change it",
                     required: false,

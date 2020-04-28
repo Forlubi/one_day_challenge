@@ -2,8 +2,15 @@
   <div class="<%= challenge.category%> image-container col-sm-6 col-md-4 col-lg-4 mb-4">
     <a href="/challenges/<%=challenge.id%>" class="item-wrap fancybox">
       <div class="square img-hover-zoom">
-        <img src="<%= challenge.pic_link %>" alt="Image" class="image"
-             onload="resize($(this))"/>
+  
+        <% if challenge.image.attached? %>
+          <img src="<%= url_for(challenge.image) %>" alt="Image" class="image"
+                onload="resize($(this))"/>
+        <% else %>
+          <img src="<%= challenge.pic_link %>" alt="Image" class="image"
+                onload="resize($(this))"/>
+        <% end %>
+        
         <div class="overlay">
           <div class="text">
             <h3><%= challenge.name %></h3>
