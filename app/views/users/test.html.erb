@@ -1,6 +1,150 @@
+
 <% provide(:title, @user.name) %>
 <p id="notice"><%= notice %></p>
 <!-- Page Content -->
 <div class="container">
-<p>test page</p>
+
+<div class="row">
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Checkins</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">23</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Participated</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1"></div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                        </div>
+                        <div class="col">
+                          <div class="progress progress-sm mr-2">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pending Requests Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-comments fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+<!-- Jumbotron Header -->
+<header class="jumbotron my-4">
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <h1>
+          <%= gravatar_for (@user) %>
+          <%= @user.name %>
+        </h1>
+      </section>
+    </aside>
+  </div>
+  <h1 class="display-3"><%= welcome(@user) %></h1>
+  <p class="lead">
+    <strong>Email: </strong><%= @user.email %><br/>
+    <strong>Checkin number:</strong><%= @user.chechin_number %><br/>
+    <strong>Coins:</strong><%= @user.coins %>&nbsp;&nbsp;&nbsp;&nbsp;
+    <!-- <strong>Challenge number: </strong><%= @user.challenge_number %> -->
+  </p>
+  <% if current_user?(@user) %>
+    <%#= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary btn-lg" %>
+    <%= link_to 'Edit', edit_user_registration_path, class: "btn btn-primary btn-lg" %>
+  <% end %>
+</header>
+
+
+  <%#= form_with(url: "/search", method: :get, local: true) do %>
+  <%# if current_user?(@user) %>
+    <%= form_with(url: search_result_path, method: :get, remote: true) do |f| %>
+      <%=hidden_field_tag(:user_id, @user.id)%>
+      <div class="row align-items-start">
+        <div class="col col-4">
+          <%= select_tag(:challenge_cate,
+                         raw('<option value="1">Active Challenges</option><option value="2">Past Challenges</option><option value="3">Favorite Challenges</option>'),
+                         options = {class: "form-control", onchange: "doSearch()"}) %>
+        </div>
+        <div class="col col-4">
+          <%= text_field_tag(:q, value = nil, options = {placeholder: "search challenge name", class: "form-control", onkeydown: "doSearch()"}) %>
+        </div>
+<!--        <div class="col col-4">-->
+          <%= f.submit "Search", class: "btn btn-primary", id: "search", style: "display:none" %>
+          <%#= submit_tag("Search", class: "btn btn-primary") %>
+<!--        </div>-->
+      </div>
+    <% end %>
+
+    <div id="search_result"></div>
+  <%# end %>
+<%= render 'shared/add_btn' %>
+
 </div>
+
+
+
+<script>
+  function doSearch() {
+      document.getElementById("search").click();
+  }
+</script>
+<script>
+    doSearch();
+</script>

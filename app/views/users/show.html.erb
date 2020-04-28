@@ -1,153 +1,116 @@
 <% provide(:title, @user.name) %>
 <p id="notice"><%= notice %></p>
 <!-- Page Content -->
+<!-- nav bar -->
+<%# <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> %>
+  <%# <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> %>
+  <%# <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> %>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sacramento&display=swap">
+
+
 <div class="container">
-
-<div class="row">
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Checkins</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">23</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Participated</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1"></div>
-                      <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                        </div>
-                        <div class="col">
-                          <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-
-<!-- Jumbotron Header -->
-<header class="jumbotron my-4">
   <div class="row">
-    <aside class="col-md-4">
-      <section class="user_info">
-        <h1>
-          <%= gravatar_for (@user) %>
-          <%= @user.name %>
-        </h1>
-      </section>
-    </aside>
+    <!-- left navbar -->
+    <div class="col-sm-3">
+      <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-thumbnail shadow" alt="avatar"><br>
+      <% if current_user?(@user) %>
+        <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-danger btn-block btn-compose-email shadow" %>
+      <% end %>
+
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default shadow">
+          <div class="panel-heading">
+              <a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse1">User Profile</a>
+          </div>
+          <div id="collapse1" class="panel-collapse collapse show">
+            <ul class="list-group">
+              <li class="list-group-item"><strong>Email: </strong><%= @user.email %></li>
+              <li class="list-group-item"><strong>Gender:</strong><%= @user.chechin_number %></li>
+              <li class="list-group-item"><strong>Coins:</strong><%= @user.coins %></li>
+            </ul>
+            <div class="panel-footer"><a href="" class="btn btn-normal btn-block" data-toggle="modal" data-target="#EditModal">Edit</a></div>
+          </div>
+        </div>
+        <br>
+        <div class="panel panel-default shadow">
+          <div class="panel-heading">
+              <a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse2">User Status</a>
+          </div>
+          <div id="collapse2" class="panel-collapse collapse">
+            <ul class="list-group">
+              <li class="list-group-item"><strong>Email: </strong><%= @user.email %></li>
+              <li class="list-group-item"><strong>Gender:</strong><%= @user.chechin_number %></li>
+              <li class="list-group-item"><strong>Coins:</strong><%= @user.coins %></li>
+            </ul>
+          </div>
+        </div>
+        <br>
+        <div class="panel panel-default shadow">
+          <div class="panel-heading">
+              <a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse3">Something Else?</a>
+          </div>
+          <div id="collapse3" class="panel-collapse collapse">
+            <ul class="list-group">
+              <li class="list-group-item"><strong>Email: </strong><%= @user.email %></li>
+              <li class="list-group-item"><strong>Gender:</strong><%= @user.chechin_number %></li>
+              <li class="list-group-item"><strong>Coins:</strong><%= @user.coins %></li>
+            </ul>
+          </div>
+        </div>
+      </div> 
+
+    </div><!-- end left navbar -->
+
+    <!-- right panel -->
+    <div class="col-sm-9">
+        <!-- resume -->
+        <div class="panel panel-default">
+
+            <div class="resume-heading">
+              <div class="row">
+                  <div class="col-lg-12">
+                      <%# <div class="col-xs-12 col-sm-4"> %>
+                      <h4><%#= greeting(@user) %></h4>
+                      <h1>Fengzhencheng Zeng</h1>
+
+                    
+                  </div>
+              </div>
+            </div>
+                
+            <div class="row tab">
+              <div class="col-lg-12">
+
+                <button class="tablink" onclick="openPage('Home', event, 'red')" id="defaultOpen">Activities</button>
+                <button class="tablink" onclick="openPage('News', event, 'green')">Participations</button>
+                <button class="tablink" onclick="openPage('Contact', event, 'blue')">My Challenges</button>
+                <button class="tablink" onclick="openPage('About', event, 'orange')">Acheivements</button>
+
+                <div id="Home" class="tabcontent">
+                  <%= render 'activities' %>
+                </div>
+
+                <div id="News" class="tabcontent">
+                  <%= render 'my_participation' %>
+                </div>
+
+                <div id="Contact" class="tabcontent">
+                  <%= render 'my_challenge' %>
+                </div>
+
+                <div id="About" class="tabcontent">
+                  <h3>Acheivements</h3>
+                  <p>User's acheivements will go here</p>
+                </div>
+
+              </div>
+            </div>
+
+         </div><!-- resume -->
+    </div><!-- end right panel -->
   </div>
-  <h1 class="display-3"><%= welcome(@user) %></h1>
-  <p class="lead">
-    <strong>Email: </strong><%= @user.email %><br/>
-    <strong>Checkin number:</strong><%= @user.chechin_number %><br/>
-    <strong>Coins:</strong><%= @user.coins %>&nbsp;&nbsp;&nbsp;&nbsp;
-    <!-- <strong>Challenge number: </strong><%= @user.challenge_number %> -->
-  </p>
-  <% if current_user?(@user) %>
-    <%#= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary btn-lg" %>
-    <%#= link_to 'Edit', edit_user_registration_path, class: "btn btn-primary btn-lg" %>
-    <a href="" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#EditModal">Edit</a>
-  <% end %>
-</header>
-
-
-  <%#= form_with(url: "/search", method: :get, local: true) do %>
-  <%# if current_user?(@user) %>
-    <%= form_with(url: search_result_path, method: :get, remote: true) do |f| %>
-      <%=hidden_field_tag(:user_id, @user.id)%>
-      <div class="row align-items-start">
-        <div class="col col-4">
-          <%= select_tag(:challenge_cate,
-                         raw('<option value="1">Active Challenges</option><option value="2">Past Challenges</option><option value="3">Favorite Challenges</option>'),
-                         options = {class: "form-control", onchange: "doSearch()"}) %>
-        </div>
-        <div class="col col-4">
-          <%= text_field_tag(:q, value = nil, options = {placeholder: "search challenge name", class: "form-control", onkeydown: "doSearch()"}) %>
-        </div>
-<!--        <div class="col col-4">-->
-          <%= f.submit "Search", class: "btn btn-primary", id: "search", style: "display:none" %>
-          <%#= submit_tag("Search", class: "btn btn-primary") %>
-<!--        </div>-->
-      </div>
-    <% end %>
-
-    <div id="search_result"></div>
-  <%# end %>
-<%= render 'shared/add_btn' %>
-
 </div>
-
-
-
-<script>
-  function doSearch() {
-      document.getElementById("search").click();
-  }
-</script>
-<script>
-    doSearch();
-</script>
 
  <!-- Modal -->
 <div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -166,3 +129,517 @@
     </div>
   </div>
 </div>
+
+
+<style>
+/****** Searchable container */
+
+.title{
+ margin-left:20px
+}
+
+.fa-user{
+ font-size:80px   
+}
+
+.searchable-container{
+    margin-top:40px;
+}
+
+.glyphicon-lg{
+    font-size:4em
+}
+.info-block{
+    border-right:5px solid #E6E6E6;margin-bottom:25px
+}
+.info-block .square-box {
+    width:120px;
+    min-height:120px;
+    margin-right:22px;
+    text-align:center!important;
+    background-color:#676767;
+    padding:20px 0
+}
+.info-block:hover .info-block.block-info {
+    border-color:#20819e
+}
+
+.info-block.block-info .square-box {
+    background-color:#5bc0de;
+    color:#FFF
+}
+
+
+.avatar {
+  margin-left:auto; 
+  margin-right:auto; 
+  display:block;
+  border-radius: 50%;
+}
+
+
+
+/*   */
+
+body{margin-top:20px;
+background:#eee;
+}
+
+.btn-compose-email {
+    padding: 10px 0px;
+    margin-bottom: 20px;
+}
+
+.btn-danger {
+    background-color: #fed136;
+    border-color: #fed136;
+    color: white;
+}
+
+.btn-normal{
+  background-color: white;
+  /* border-color: #fed136; */
+  color: #fed136;
+  /* border-width: medium; */
+}
+
+.panel-teal .panel-heading {
+    background-color: #37BC9B;
+    border: 1px solid #36b898;
+    color: white;
+}
+
+.panel .panel-heading {
+    padding: 5px;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    /* border-bottom: 1px solid #DDD; */
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 6px;
+}
+
+.panel .panel-heading{
+    padding: 10px;
+    font-size: 17px;
+}
+
+form .form-group {
+    position: relative;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.inner-all {
+    padding: 10px;
+}
+
+
+
+
+
+
+/*font Awesome http://fontawesome.io*/
+@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
+/*Comment List styles*/
+.comment-list .row {
+  margin-bottom: 0px;
+}
+.comment-list .panel .panel-heading {
+  padding: 4px 15px;
+  position: absolute;
+  border:none;
+  /*Panel-heading border radius*/
+  border-top-right-radius:0px;
+  top: 1px;
+}
+.comment-list .panel .panel-heading.right {
+  border-right-width: 0px;
+  /*Panel-heading border radius*/
+  border-top-left-radius:0px;
+  right: 16px;
+}
+.comment-list .panel .panel-heading .panel-body {
+  padding-top: 6px;
+}
+.comment-list figcaption {
+  /*For wrapping text in thumbnail*/
+  word-wrap: break-word;
+}
+/* Portrait tablets and medium desktops */
+@media (min-width: 768px) {
+  .comment-list .arrow:after, .comment-list .arrow:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent;
+  }
+  .comment-list .panel.arrow.left:after, .comment-list .panel.arrow.left:before {
+    border-left: 0;
+  }
+  /*****Left Arrow*****/
+  /*Outline effect style*/
+  .comment-list .panel.arrow.left:before {
+    left: 0px;
+    top: 30px;
+    /*Use boarder color of panel*/
+    border-right-color: inherit;
+    border-width: 16px;
+  }
+  /*Background color effect*/
+  .comment-list .panel.arrow.left:after {
+    left: 1px;
+    top: 31px;
+    /*Change for different outline color*/
+    border-right-color: #FFFFFF;
+    border-width: 15px;
+  }
+  /*****Right Arrow*****/
+  /*Outline effect style*/
+  .comment-list .panel.arrow.right:before {
+    right: -16px;
+    top: 30px;
+    /*Use boarder color of panel*/
+    border-left-color: inherit;
+    border-width: 16px;
+  }
+  /*Background color effect*/
+  .comment-list .panel.arrow.right:after {
+    right: -14px;
+    top: 31px;
+    /*Change for different outline color*/
+    border-left-color: #FFFFFF;
+    border-width: 15px;
+  }
+}
+.comment-list .comment-post {
+  margin-top: 6px;
+}
+
+
+
+
+
+
+
+/**** resume ****/
+                    
+    /* uses font awesome for social icons */
+@import url(http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
+
+.page-header{
+  text-align: center;    
+}
+
+/*social buttons*/
+.btn-social{
+  color: white;
+  opacity:0.9;
+}
+.btn-social:hover {
+  color: white;
+    opacity:1;
+}
+
+/* resume stuff */
+
+.bs-callout {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: white;
+    border-color: #eee;
+    border-image: none;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px 1px 1px 5px;
+    margin-bottom: 5px;
+    padding: 20px;
+}
+.bs-callout:last-child {
+    margin-bottom: 0px;
+}
+.bs-callout h4 {
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+.bs-callout-danger {
+    border-left-color: #fed136;
+}
+
+.bs-callout-danger h4{
+    color: #fed136;
+}
+
+a.panel-title{
+  text-decoration:none;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0rem;
+}
+
+.panel-title {
+  position: relative;
+}
+  
+.panel-title::after {
+	content: "\f107";
+	color: #333;
+	top: -2px;
+	right: 0px;
+	position: absolute;
+    font-family: "FontAwesome"
+}
+
+.panel-title[aria-expanded="true"]::after {
+	content: "\f106";
+}
+
+.panel-heading {
+  position: relative;
+  display: block;
+  /* padding: 0.75rem 1.25rem; */
+  background-color: white;
+  /* opacity: 0.1; */
+  /* z-index: 1; */
+  border: 3px solid rgba(0, 0, 0, 0.125);
+    border-color: #fed136;
+  /* border-width: medium; */
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  border-radius:5px;
+}
+
+.resume .list-group-item:first-child, .resume .list-group-item:last-child{
+  border-radius:0;
+}
+
+/*makes an anchor inactive(not clickable)*/
+.inactive-link {
+   pointer-events: none;
+   cursor: default;
+}
+
+.resume-heading .social-btns{
+  margin-top:15px;
+}
+.resume-heading .social-btns i.fa{
+  margin-left:-5px;
+}
+
+
+
+@media (max-width: 992px) {
+  .resume-heading .social-btn-holder{
+    padding:5px;
+  }
+}
+
+
+/* skill meter in resume. copy pasted from http://bootsnipp.com/snippets/featured/progress-bar-meter */
+
+.progress-bar {
+    text-align: left;
+    white-space: nowrap;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	cursor: pointer;
+}
+
+.progress-bar > .progress-type {
+	padding-left: 10px;
+}
+
+.progress-meter {
+	min-height: 15px;
+	border-bottom: 2px solid rgb(160, 160, 160);
+  margin-bottom: 15px;
+}
+
+.progress-meter > .meter {
+	position: relative;
+	float: left;
+	min-height: 15px;
+	border-width: 0px;
+	border-style: solid;
+	border-color: rgb(160, 160, 160);
+}
+
+.progress-meter > .meter-left {
+	border-left-width: 2px;
+}
+
+.progress-meter > .meter-right {
+	float: right;
+	border-right-width: 2px;
+}
+
+.progress-meter > .meter-right:last-child {
+	border-left-width: 2px;
+}
+
+.progress-meter > .meter > .meter-text {
+	position: absolute;
+	display: inline-block;
+	bottom: -20px;
+	width: 100%;
+	font-weight: 700;
+	font-size: 0.85em;
+	color: rgb(160, 160, 160);
+	text-align: left;
+}
+
+.progress-meter > .meter.meter-right > .meter-text {
+	text-align: right;
+}
+
+
+/*Neon sign*/
+/*source: https://codepen.io/ananyaneogi/pen/Bgozrz*/
+
+@import url("https://fonts.googleapis.com/css?family=Sacramento&display=swap");
+
+h1 {
+  margin: 5rem 0 2rem 0;
+  font-size: 3rem;
+  /* font-size: calc(20px + 18vh);
+  line-height: calc(20px + 20vh); */
+/*   text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
+    0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
+  color: #fccaff; */
+  text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+    color: #fff6a9;
+  font-family: "Sacramento", cursive;
+  text-align: left;
+  animation: blink 12s infinite;
+  -webkit-animation: blink 12s infinite;
+}
+
+
+@-webkit-keyframes blink {
+  20%,
+  24%,
+  55% {
+    color: #111;
+    text-shadow: none;
+  }
+
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+/*     color: #fccaff;
+    text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
+      0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092; */
+  text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+    color: #fff6a9;
+  }
+}
+
+@keyframes blink {
+  20%,
+  24%,
+  55% {
+    color: transparent;
+    text-shadow: none;
+  }
+
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+/*     color: #fccaff;
+    text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
+      0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092; */
+  text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+    color: #fff6a9;
+  }
+}
+
+/*tab*/
+/*Source https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_full_page_tabs*/
+
+button:focus {outline:0;}
+
+.tab{
+  margin-top:3.25rem;
+}
+
+* {box-sizing: border-box}
+
+/* Set height of body and the document to 100% */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial;
+}
+
+/* Style tab links */
+.tablink {
+  background-color: white;
+  color: black;
+  float: left;
+  border: none;
+  border-bottom: 6px solid #ccc!important;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 12px;
+  font-size: 17px;
+  width: 25%;
+}
+
+.tablink:hover {
+  background-color: #d3d3d3 ;
+}
+
+.border-yellow{
+  border-color: #fed136!important;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+  color: black;
+  display: none;
+  padding: 80px 0px;
+  height: 100%;
+}
+
+#Home {background-color: transparent;}
+#News {background-color: transparent;}
+#Contact {background-color: transparent;}
+#About {background-color: transparent;}
+</style>
+
+<script>
+  function openPage(pageName,elmnt,color) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" border-yellow", "");
+    }
+    document.getElementById(pageName).style.display = "block";
+    elmnt.currentTarget.className += " border-yellow";
+  }
+
+  // Get the element with id="defaultOpen" and click on it
+  document.getElementById("defaultOpen").click();
+</script>

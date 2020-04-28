@@ -6,7 +6,7 @@
           <%= link_to image_tag(challenge.pic_link, alt: challenge.name, class: "card-img-top"), challenge %>
           <div class="card-body">
             <h4> <%= link_to challenge.name, challenge, class: "card-title" %></h4>
-            <p class="card-text"><%= challenge.description[0..100] + "..." %></p>
+            <p class="card-text"><%#= challenge.description[0..100] + "..." %></p>
           </div>
           <% if participated?(current_user.id, challenge.id) && !checkedIn?(current_user.id, challenge.id)%>
               <div class="card-footer">

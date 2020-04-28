@@ -1,9 +1,9 @@
 module UsersHelper
     # Returns the Gravatar for the given user.
-  def gravatar_for(user)
+  def gravatar_for(user, img_size=80)
     gravatar_id  = Digest::MD5::hexdigest(user.email.downcase)
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
-    image_tag(gravatar_url, alt: user.name, class: "gravatar")
+    image_tag(gravatar_url, alt: user.name, class: "gravatar", size: img_size)
   end
 
   def welcome(user)
@@ -12,6 +12,21 @@ module UsersHelper
   	else
   		user.name
   	end
+  end
+
+  def greeting(user)
+    greeting = "Good "
+    time = Time.now.hour
+    if time < 12 and time > 5
+      greeting += "morning"
+    elsif time < 17
+      greeting += "afternoon"
+    elsif time < 22
+      greeting += "evening"
+    else
+      greeting += "night"
+    end
+    return "#{greeting}"
   end
 
   def display_by(key, users)

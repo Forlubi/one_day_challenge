@@ -1,0 +1,29 @@
+    <%= form_with(url: search_result_path, method: :get, remote: true) do |f| %>
+      <%=hidden_field_tag(:user_id, @user.id)%>
+      <div class="row align-items-start">
+        <div class="col col-4">
+          <%= select_tag(:challenge_cate,
+                         raw('<option value="1">Active Challenges</option><option value="2">Past Challenges</option><option value="3">Favorite Challenges</option>'),
+                         options = {class: "form-control", onchange: "doSearch()"}) %>
+        </div>
+        <div class="col col-4">
+          <%= text_field_tag(:q, value = nil, options = {placeholder: "search challenge name", class: "form-control", onkeydown: "doSearch()"}) %>
+        </div>
+<!--        <div class="col col-4">-->
+          <%= f.submit "Search", class: "btn btn-primary", id: "search", style: "display:none" %>
+          <%#= submit_tag("Search", class: "btn btn-primary") %>
+<!--        </div>-->
+      </div>
+    <% end %>
+
+    <div id="search_result"></div>
+
+
+<script>
+  function doSearch() {
+      document.getElementById("search").click();
+  }
+</script>
+<script>
+    doSearch();
+</script>
