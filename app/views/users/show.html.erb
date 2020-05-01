@@ -8,7 +8,6 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> %>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sacramento&display=swap">
 
-
 <div class="container">
   <div class="row">
     <!-- left navbar -->
@@ -29,11 +28,13 @@
               <a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse1">User Profile</a>
           </div>
           <div id="collapse1" class="panel-collapse collapse show">
-            <ul class="list-group">
-              <li class="list-group-item"><strong>Email: </strong><%= @user.email %></li>
-              <li class="list-group-item"><strong>Gender:</strong><%= @user.chechin_number %></li>
-              <li class="list-group-item"><strong>Coins:</strong><%= @user.coins %></li>
-            </ul>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item"><strong>Email: </strong><%= @user.email %></li>
+                <li class="list-group-item"><strong>Gender:</strong><%= @user.chechin_number %></li>
+                <li class="list-group-item"><strong>Coins:</strong><%= @user.coins %></li>
+              </ul>
+            </div>
             <% if current_user?(@user) %>
               <div class="panel-footer"><a href="" class="btn btn-normal btn-block" data-toggle="modal" data-target="#EditModal">Edit</a></div>
             <% end %>
@@ -45,11 +46,13 @@
               <a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse2">User Status</a>
           </div>
           <div id="collapse2" class="panel-collapse collapse">
-            <ul class="list-group">
-              <li class="list-group-item"><strong>Email: </strong><%= @user.email %></li>
-              <li class="list-group-item"><strong>Gender:</strong><%= @user.chechin_number %></li>
-              <li class="list-group-item"><strong>Coins:</strong><%= @user.coins %></li>
-            </ul>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item"><strong>Email: </strong><%= @user.email %></li>
+                <li class="list-group-item"><strong>Gender:</strong><%= @user.chechin_number %></li>
+                <li class="list-group-item"><strong>Coins:</strong><%= @user.coins %></li>
+              </ul>
+            </div>
           </div>
         </div>
         <br>
@@ -58,11 +61,13 @@
               <a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse3">Something Else?</a>
           </div>
           <div id="collapse3" class="panel-collapse collapse">
-            <ul class="list-group">
-              <li class="list-group-item"><strong>Email: </strong><%= @user.email %></li>
-              <li class="list-group-item"><strong>Gender:</strong><%= @user.chechin_number %></li>
-              <li class="list-group-item"><strong>Coins:</strong><%= @user.coins %></li>
-            </ul>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item"><strong>Email: </strong><%= @user.email %></li>
+                <li class="list-group-item"><strong>Gender:</strong><%= @user.chechin_number %></li>
+                <li class="list-group-item"><strong>Coins:</strong><%= @user.coins %></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div> 
