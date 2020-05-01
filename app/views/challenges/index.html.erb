@@ -22,12 +22,13 @@
   <section class="section site-portfolio">
     <div class="container">
       <div class="row mb-5 align-items-center">
-        <div class="col-md-12 col-lg-6 mb-4 mb-lg-0" data-aos="fade-up">
+        <div class="col-md-12 col-lg-6 mb-4 mb-lg-0">
           <h2>Ready to challenge yourself?</h2>
-          <p class="mb-0">Join millions of challenges around the world</p>
+          <p class="mb-0">Join millions of challenges around the world</p><br>
+          <%= render 'shared/add_btn' %>
         </div>
 
-        <div class="col-md-12 col-lg-6 text-left text-lg-right" data-aos="fade-up" data-aos-delay="100">
+        <div class="col-md-12 col-lg-6" style="margin:6rem 0 0 0">
           <div id="filters" class="filters">
             <%= link_to "All", "/filter/#{'All'}", remote: true, class: 'active' %>
             <%= link_to "Life", "/filter/#{'Life'}", remote: true %>
@@ -41,18 +42,17 @@
 
       <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
-          <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
+          <div id="portfolio-grid" class="row no-gutter">
             <%= render 'challenges/portfolio', challenges: @challenges %>
           </div>
         </div>
       </div>
 
     </div>
-    <%= render 'shared/add_btn' %>
   </section><!-- End  Works Section -->
 </main><!-- End #main -->
 
-<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+<%# <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a> %>
 
 
 
