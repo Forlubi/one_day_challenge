@@ -3,7 +3,7 @@
 <%= form_for([@challenge, @comment]) do |form| %>
   <div class='container'>
           <div class="form-group">
-            <%= form.text_area :content, class: 'form-control', style: "width: 100%; height: 125px;" %>
+            <%= form.rich_text_area :content, class: 'form-control', style: "width: 100%; height: 125px;" %>
           </div>         
           <div class="form-group">
             <input type="submit" name="btnSubmit" class="btn btn-primary" value="Edit Comment"/>

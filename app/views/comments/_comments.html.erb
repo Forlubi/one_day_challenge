@@ -1,17 +1,19 @@
 <div class='container'>
     <h2>Discussions</h2>
-    <%# <div class="card"> %>
     <% @comments.each do |comment| %>
-        <% @edit_comment = comment %>
+      <div class="border-top"> 
         <%= link_to "@#{comment.user.name}", user_path(comment.user), {:style=>'color:#000000; font-style: italic;', target: :_blank} %>
         <p>
             <%= comment.content %>
             <% if current_user && current_user.id==comment.user_id %>
-                <%= link_to "Edit", edit_challenge_comment_path(comment.challenge, comment), romote: true %>
-                <%= link_to "Delete", [comment.challenge, comment],  data: { confirm: "Are you sure?"}, method: :delete %>
+                <div class="d-flex justify-content-end ">
+                  <div class = "btn-group btn-group-sm">
+                    <%= link_to "Edit", edit_challenge_comment_path(comment.challenge, comment), class: "btn btn-primary" %>
+                    <%= link_to "Delete", [comment.challenge, comment],  data: { confirm: "Are you sure?"}, class: "btn btn-primary", method: :delete %>
+                  </div>
+                </div>
             <% end %>
-            <%# <a href="" data-toggle="modal" data-target="#EditCommentModal">Edit</a> %>
         </p>
+      </div>
     <% end %>
-    <%# </div> %>
-</div>
+</div></br >

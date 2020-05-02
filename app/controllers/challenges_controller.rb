@@ -29,7 +29,7 @@ class ChallengesController < ApplicationController
   # GET /challenges/1.json
   def show
     # FIXME Should not be able to reparticicate (hide btn) (Anyan)
-    @comments = Comment.where(challenge_id: @challenge).order("created_at DESC")
+    @comments = Comment.where(challenge_id: @challenge).order("created_at")
   end
 
   # GET /challenges/new
