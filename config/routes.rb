@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   resources :participate_ins
   resources :histories
   resources :favorites
-  resources :challenges
+  resources :challenges do
+    resources :comments
+  end
 
   root                         'pages#home' 
   get    '/about',         to: 'pages#about'

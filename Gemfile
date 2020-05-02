@@ -19,6 +19,7 @@ gem 'bootstrap',  '~>4.3.1'
 gem 'simple_form'
 gem 'momentjs-rails'
 gem 'bootstrap4-datetime-picker-rails'
+gem 'image_processing'
 
 
 gem 'pry-byebug'

@@ -5,6 +5,7 @@ class Challenge < ApplicationRecord
   has_many :fav_users, through: :favorites, source: :user
   has_many :histories
   has_many :his_users, through: :histories, source: :user
+  has_many :comments, dependent: :destroy
 
   has_one_attached :image
   has_one_attached :video

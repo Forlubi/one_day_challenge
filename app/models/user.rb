@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :fav_challenges, through: :favorites, source: :challenge
   has_many :histories
   has_many :his_challenges, through: :histories, source: :challenge
+  has_many :comments, dependent: :destroy
 
   has_one_attached :avatar
 

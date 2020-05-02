@@ -3,10 +3,10 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-require("@rails/ujs").start();
-require("turbolinks").start();
-require("@rails/activestorage").start();
-require("channels");
+require('@rails/ujs').start();
+require('turbolinks').start();
+require('@rails/activestorage').start();
+require('channels');
 // require.context('../../assets/images', true);
 // require("jquery");
 
@@ -26,20 +26,18 @@ require("channels");
 // import "bootstrap";
 
 // import $ from "jquery";
-import "bootstrap";
-import "@fortawesome/fontawesome-free/js/all";
-import "../stylesheets/application";
-import "./custom";
-
+import 'bootstrap';
+import '@fortawesome/fontawesome-free/js/all';
+import '../stylesheets/application';
+import './custom';
 
 // Contact form JavaScript
-import "./js/jqBootstrapValidation.js";
-import "./js/contact_me.js";
+import './js/jqBootstrapValidation.js';
+import './js/contact_me.js';
 
 // Custom scripts for this template
 // import "./js/agency.min.js";
-import "./js/agency.js";
-
+import './js/agency.js';
 
 // window.jQuery = $;
 // window.$ = $;
