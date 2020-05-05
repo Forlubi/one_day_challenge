@@ -44,16 +44,20 @@
             </ul>
 
             <p>
-              <% if participated?(current_user.id, @challenge.id) %>
-                <%= link_to 'Unparticipate', "/drop/#{@challenge.id}", class: 'btn btn-primary', method: :delete %>
-              <% else %>
-                <%= link_to 'Participate', "/participate/#{@challenge.id}", class: 'btn btn-primary', method: :post %>
-              <% end %>
+              <% if active_challenge? @challenge %>
+                <% if participated?(current_user.id, @challenge.id) %>
+                  <%= link_to 'Unparticipate', "/drop/#{@challenge.id}", class: 'btn btn-primary', method: :delete %>
+                <% else %>
+                  <%= link_to 'Participate', "/participate/#{@challenge.id}", class: 'btn btn-primary', method: :post %>
+                <% end %>
 
-              <% if favorited?(current_user.id, @challenge.id) %>
-                <%= link_to 'Unfavorite', "/unfavorite/#{@challenge.id}", class: 'btn btn-primary', method: :delete %>
+                <% if favorited?(current_user.id, @challenge.id) %>
+                  <%= link_to 'Unfavorite', "/unfavorite/#{@challenge.id}", class: 'btn btn-primary', method: :delete %>
+                <% else %>
+                  <%= link_to 'Favorite', "/favorite/#{@challenge.id}", class: 'btn btn-primary', method: :post %>
+                <% end %>
               <% else %>
-                <%= link_to 'Favorite', "/favorite/#{@challenge.id}", class: 'btn btn-primary', method: :post %>
+                <%= link_to 'This challenge has been archived', "/drop/#{@challenge.id}", class: 'btn btn-warning disabled', method: :delete %>
               <% end %>
             </p>
           </div>
