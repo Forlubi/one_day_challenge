@@ -2,7 +2,7 @@
     <h2>Discussions</h2>
     <% @comments.each do |comment| %>
       <div class="border-top"> 
-        <%= link_to "@#{comment.user.name}", user_path(comment.user), {:style=>'color:#000000; font-style: italic;', target: :_blank} %>
+        <%= link_to "@#{comment.user.name}", user_path(comment.user) %>
         <p>
             <%= comment.content %>
             <% if current_user && current_user.id==comment.user_id %>
