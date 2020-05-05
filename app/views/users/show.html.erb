@@ -8,7 +8,6 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> %>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sacramento&display=swap">
 
-
 <div class="container">
   <div class="row">
     <!-- left navbar -->
@@ -29,12 +28,16 @@
               <a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse1">User Profile</a>
           </div>
           <div id="collapse1" class="panel-collapse collapse show">
-            <ul class="list-group">
-              <li class="list-group-item"><strong>Email: </strong><%= @user.email %></li>
-              <li class="list-group-item"><strong>Gender:</strong><%= @user.chechin_number %></li>
-              <li class="list-group-item"><strong>Coins:</strong><%= @user.coins %></li>
-            </ul>
-            <div class="panel-footer"><a href="" class="btn btn-normal btn-block" data-toggle="modal" data-target="#EditModal">Edit</a></div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item"><strong>Email: </strong><%= @user.email %></li>
+                <li class="list-group-item"><strong>Gender:</strong><%= @user.chechin_number %></li>
+                <li class="list-group-item"><strong>Coins:</strong><%= @user.coins %></li>
+              </ul>
+            </div>
+            <% if current_user?(@user) %>
+              <div class="panel-footer"><a href="" class="btn btn-normal btn-block" data-toggle="modal" data-target="#EditModal">Edit</a></div>
+            <% end %>
           </div>
         </div>
         <br>
@@ -43,11 +46,13 @@
               <a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse2">User Status</a>
           </div>
           <div id="collapse2" class="panel-collapse collapse">
-            <ul class="list-group">
-              <li class="list-group-item"><strong>Email: </strong><%= @user.email %></li>
-              <li class="list-group-item"><strong>Gender:</strong><%= @user.chechin_number %></li>
-              <li class="list-group-item"><strong>Coins:</strong><%= @user.coins %></li>
-            </ul>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item"><strong>Email: </strong><%= @user.email %></li>
+                <li class="list-group-item"><strong>Gender:</strong><%= @user.chechin_number %></li>
+                <li class="list-group-item"><strong>Coins:</strong><%= @user.coins %></li>
+              </ul>
+            </div>
           </div>
         </div>
         <br>
@@ -56,11 +61,13 @@
               <a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse3">Something Else?</a>
           </div>
           <div id="collapse3" class="panel-collapse collapse">
-            <ul class="list-group">
-              <li class="list-group-item"><strong>Email: </strong><%= @user.email %></li>
-              <li class="list-group-item"><strong>Gender:</strong><%= @user.chechin_number %></li>
-              <li class="list-group-item"><strong>Coins:</strong><%= @user.coins %></li>
-            </ul>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item"><strong>Email: </strong><%= @user.email %></li>
+                <li class="list-group-item"><strong>Gender:</strong><%= @user.chechin_number %></li>
+                <li class="list-group-item"><strong>Coins:</strong><%= @user.coins %></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div> 
@@ -154,26 +161,6 @@
 .glyphicon-lg{
     font-size:4em
 }
-.info-block{
-    border-right:5px solid #E6E6E6;margin-bottom:25px
-}
-.info-block .square-box {
-    width:120px;
-    min-height:120px;
-    margin-right:22px;
-    text-align:center!important;
-    background-color:#676767;
-    padding:20px 0
-}
-.info-block:hover .info-block.block-info {
-    border-color:#20819e
-}
-
-.info-block.block-info .square-box {
-    background-color:#5bc0de;
-    color:#FFF
-}
-
 
 .avatar {
   margin-left:auto; 
@@ -238,96 +225,6 @@ form .form-group {
 .inner-all {
     padding: 10px;
 }
-
-
-
-
-
-
-/*font Awesome http://fontawesome.io*/
-@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
-/*Comment List styles*/
-.comment-list .row {
-  margin-bottom: 0px;
-}
-.comment-list .panel .panel-heading {
-  padding: 4px 15px;
-  position: absolute;
-  border:none;
-  /*Panel-heading border radius*/
-  border-top-right-radius:0px;
-  top: 1px;
-}
-.comment-list .panel .panel-heading.right {
-  border-right-width: 0px;
-  /*Panel-heading border radius*/
-  border-top-left-radius:0px;
-  right: 16px;
-}
-.comment-list .panel .panel-heading .panel-body {
-  padding-top: 6px;
-}
-.comment-list figcaption {
-  /*For wrapping text in thumbnail*/
-  word-wrap: break-word;
-}
-/* Portrait tablets and medium desktops */
-@media (min-width: 768px) {
-  .comment-list .arrow:after, .comment-list .arrow:before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-color: transparent;
-  }
-  .comment-list .panel.arrow.left:after, .comment-list .panel.arrow.left:before {
-    border-left: 0;
-  }
-  /*****Left Arrow*****/
-  /*Outline effect style*/
-  .comment-list .panel.arrow.left:before {
-    left: 0px;
-    top: 30px;
-    /*Use boarder color of panel*/
-    border-right-color: inherit;
-    border-width: 16px;
-  }
-  /*Background color effect*/
-  .comment-list .panel.arrow.left:after {
-    left: 1px;
-    top: 31px;
-    /*Change for different outline color*/
-    border-right-color: #FFFFFF;
-    border-width: 15px;
-  }
-  /*****Right Arrow*****/
-  /*Outline effect style*/
-  .comment-list .panel.arrow.right:before {
-    right: -16px;
-    top: 30px;
-    /*Use boarder color of panel*/
-    border-left-color: inherit;
-    border-width: 16px;
-  }
-  /*Background color effect*/
-  .comment-list .panel.arrow.right:after {
-    right: -14px;
-    top: 31px;
-    /*Change for different outline color*/
-    border-left-color: #FFFFFF;
-    border-width: 15px;
-  }
-}
-.comment-list .comment-post {
-  margin-top: 6px;
-}
-
-
-
-
-
-
 
 /**** resume ****/
                     
@@ -445,66 +342,6 @@ a.panel-title{
     padding:5px;
   }
 }
-
-
-/* skill meter in resume. copy pasted from http://bootsnipp.com/snippets/featured/progress-bar-meter */
-
-.progress-bar {
-    text-align: left;
-    white-space: nowrap;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	cursor: pointer;
-}
-
-.progress-bar > .progress-type {
-	padding-left: 10px;
-}
-
-.progress-meter {
-	min-height: 15px;
-	border-bottom: 2px solid rgb(160, 160, 160);
-  margin-bottom: 15px;
-}
-
-.progress-meter > .meter {
-	position: relative;
-	float: left;
-	min-height: 15px;
-	border-width: 0px;
-	border-style: solid;
-	border-color: rgb(160, 160, 160);
-}
-
-.progress-meter > .meter-left {
-	border-left-width: 2px;
-}
-
-.progress-meter > .meter-right {
-	float: right;
-	border-right-width: 2px;
-}
-
-.progress-meter > .meter-right:last-child {
-	border-left-width: 2px;
-}
-
-.progress-meter > .meter > .meter-text {
-	position: absolute;
-	display: inline-block;
-	bottom: -20px;
-	width: 100%;
-	font-weight: 700;
-	font-size: 0.85em;
-	color: rgb(160, 160, 160);
-	text-align: left;
-}
-
-.progress-meter > .meter.meter-right > .meter-text {
-	text-align: right;
-}
-
 
 /*Neon sign*/
 /*source: https://codepen.io/ananyaneogi/pen/Bgozrz*/
