@@ -30,6 +30,7 @@ class ChallengesController < ApplicationController
   def show
     # FIXME Should not be able to reparticicate (hide btn) (Anyan)
     @comments = Comment.where(challenge_id: @challenge).order("created_at")
+    @owner = User.where(id: @challenge.owner_id).first # find the owner of the challenge
   end
 
   # GET /challenges/new

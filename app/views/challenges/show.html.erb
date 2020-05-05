@@ -27,7 +27,7 @@
         <div class="col-md-3 ml-auto" data-aos="fade-up" data-aos-delay="100">
           <div class="sticky-content">
             <h3><%= @challenge.category %></h3>
-            <p class="mb-4"><span class="text-muted">Created by: to be implemented</span></p>
+            <p class="mb-4"><span class="text-muted">Created by: <%= link_to(@owner.name, user_path(@owner)) %></span></p>
 
             <div class="mb-5">
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores illo, id recusandae molestias

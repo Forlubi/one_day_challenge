@@ -75,7 +75,8 @@ csv.each do |row|
     failed_number: 0,
     duration: row["duration"].to_i,
     deadline: ddl,
-    pic_link: row["pic"])
+    pic_link: row["pic"],
+    owner_id: User.all.sample.id)
 
   if count < divide_point
     active_challenges << challenge
