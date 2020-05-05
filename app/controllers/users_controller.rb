@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @owned_challenges = Challenge.where(owner_id: current_user.id)
   end
 
   # GET /users/1/edit

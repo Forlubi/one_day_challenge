@@ -39,6 +39,10 @@ gem 'devise'
 gem 'omniauth-github'
 # Use Omniauth Twitter plugin
 gem 'omniauth-twitter'
+
+gem 'omniauth-google-oauth2'
+gem 'google-api-client', require: 'google/apis/calendar_v3'
+
 # Use ActiveRecord Sessions
 gem 'activerecord-session_store'
 

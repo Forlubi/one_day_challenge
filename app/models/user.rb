@@ -4,7 +4,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, #:confirmable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: [:twitter, :github]
+         :omniauthable, omniauth_providers: [:twitter, :github, :google_oauth2]
 
   has_many :participate_ins
   has_many :challenges, through: :participate_ins

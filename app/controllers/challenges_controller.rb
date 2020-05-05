@@ -1,5 +1,7 @@
 class ChallengesController < ApplicationController
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
+  before_action :set_host_for_local_storage, only: [:new, :create, :show, :edit, :update, :destroy]
+
 
   # GET /challenges
   # GET /challenges.json
@@ -28,7 +30,6 @@ class ChallengesController < ApplicationController
   # GET /challenges/1
   # GET /challenges/1.json
   def show
-    # FIXME Should not be able to reparticicate (hide btn) (Anyan)
     @comments = Comment.where(challenge_id: @challenge).order("created_at")
     @owner = User.where(id: @challenge.owner_id).first # find the owner of the challenge
   end
@@ -47,7 +48,9 @@ class ChallengesController < ApplicationController
   def create
     @challenge = Challenge.new(challenge_params)
     @challenge.owner_id = current_user.id
-
+    if @challenge.image.attached?
+      @challenge.pic_link = @challenge.image.service_url
+    end
     respond_to do |format|
       if @challenge.save
         format.html { redirect_to @challenge, notice: 'Challenge was successfully created.' }
@@ -94,4 +97,9 @@ class ChallengesController < ApplicationController
   def challenge_params
     params.require(:challenge).permit(:name, :category, :description, :coins, :duration, :participant_number, :failed_number, :deadline, :image, :video)
   end
+
+  def set_host_for_local_storage
+        ActiveStorage::Current.host = request.base_url if Rails.application.config.active_storage.service == :local
+  end
+  
 end

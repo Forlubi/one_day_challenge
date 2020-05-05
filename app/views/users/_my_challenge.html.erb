@@ -1,1 +1,20 @@
 <%= render 'shared/add_btn' %>
+<br><br>
+<div class="row text-center">
+  <% if !@owned_challenges.nil?%>
+    <% @owned_challenges.all.each do |challenge| %>
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <%= link_to image_tag(challenge.pic_link, alt: challenge.name, class: "card-img-top"), challenge %>
+          <div class="card-body">
+            <h4> <%= link_to challenge.name, challenge, class: "card-title" %></h4>
+            <p class="card-text"><%#= challenge.description[0..100] + "..." %></p>
+          </div>
+          <div class="card-footer">
+            <%= link_to "Delete", challenge_path(challenge), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
