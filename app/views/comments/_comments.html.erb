@@ -2,10 +2,10 @@
     <h2>Discussions</h2>
     <% @comments.each do |comment| %>
       <div class="border-top"> 
-        <%= link_to "@#{comment.user.name}", user_path(comment.user), {:style=>'color:#000000; font-style: italic;', target: :_blank} %>
+        <%= link_to commenter_name(comment), user_path(comment.user), {target: :_blank} %>
         <p>
             <%= comment.content %>
-            <% if current_user && current_user.id==comment.user_id %>
+            <% if current_user && (current_user.id==comment.user_id || current_user.id==@challenge.owner_id ) %>
                 <div class="d-flex justify-content-end ">
                   <div class = "btn-group btn-group-sm">
                     <%= link_to "Edit", edit_challenge_comment_path(comment.challenge, comment), class: "btn btn-primary" %>

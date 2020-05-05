@@ -94,7 +94,7 @@ class CommentsController < ApplicationController
     end
 
     def comment_owner
-      unless current_user.id == @comment.user_id
+      unless (current_user.id == @comment.user_id || current_user.id == @challenge.owner.id)
         flash[":notice"] = "Cannot manage others' comments."
         redirect_to @challenge
       end
