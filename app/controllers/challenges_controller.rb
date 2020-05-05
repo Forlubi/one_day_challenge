@@ -28,7 +28,6 @@ class ChallengesController < ApplicationController
   # GET /challenges/1
   # GET /challenges/1.json
   def show
-    # FIXME Should not be able to reparticicate (hide btn) (Anyan)
     @comments = Comment.where(challenge_id: @challenge).order("created_at")
     @owner = User.where(id: @challenge.owner_id).first # find the owner of the challenge
   end
@@ -46,7 +45,7 @@ class ChallengesController < ApplicationController
   # POST /challenges.json
   def create
     @challenge = Challenge.new(challenge_params)
-
+    @challenge.owner_id = current_user.id
     respond_to do |format|
       if @challenge.save
         format.html { redirect_to @challenge, notice: 'Challenge was successfully created.' }
