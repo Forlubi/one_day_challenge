@@ -12,4 +12,18 @@ class Challenge < ApplicationRecord
 
   validates :name, :category, :description, :coins, :duration, :deadline, :presence => true
   validates :name, :uniqueness => { :case_sensitive => false }
+
+  def check_user_checkin
+    ParticipateIns.all.delete_if do |challenge|
+      finished = finished?(challenge) 
+      if failed?(challenge) || finished
+        History.create!(
+          user_id: challenge.user_id,
+          challenge_id: challenge.challenge_id,
+          finished: finished)
+        true # mark for deletion
+      end
+    end
+  end
+
 end
