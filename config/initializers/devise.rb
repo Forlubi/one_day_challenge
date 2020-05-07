@@ -299,7 +299,7 @@ Devise.setup do |config|
   config.sign_in_after_change_password = true
 
   # config.omniauth :github, '5d5dba5966c1a33551d3', '1f0dac7b35e2f1547c0e563bf91ac279090bb53d', scope: 'user,public_repo', prompt: 'consent'
-  config.omniauth :github, ENV['github_client_id'], ENV['github_client_secret'], scope: 'user,public_repo', prompt: 'consent'
+  config.omniauth :github, ENV['github_client_id'], ENV['github_client_secret'], { scope: 'user,public_repo', prompt: 'consent' }
   # config.omniauth :twitter, 'Wi3ACY45pi2PBWJm5ww3shXPk', 'vpu7kyXnwOdzp6VgcBRP1NZL3o5kts5GbIpYfqG1KMY2HkEJc6', prompt: 'consent'
   config.omniauth :twitter, ENV['twitter_client_id'], ENV['twitter_client_secret'], prompt: 'consent'
   # config.omniauth :google_oauth2, '1040137256732-4l063dhb7vl0ioob95djkqjiloqtiq1m.apps.googleusercontent.com', '-ci8nL7nrwAdIe7c32KneE0-',
