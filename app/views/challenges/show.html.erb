@@ -31,7 +31,6 @@
             <div class="mb-5">
               <p>This challenge belongs to the <%= @challenge.category %> category. Click <%= link_to("here", challenges_path) %> and choose the corresponding category to see the full list of similar challenges.</p>
             </div>
-
             <h4 class="h4 mb-3">Statistics</h4>
             <ul class="list-unstyled list-line mb-5">
               <li>Coins: <%= @challenge.coins %></li>
@@ -42,9 +41,11 @@
             </ul>
 
             <p>
+            <div class='btn-group-vertical'>
               <% if active_challenge? @challenge %>
                 <% if participated?(current_user.id, @challenge.id) %>
                   <%= link_to 'Unparticipate', "/drop/#{@challenge.id}", class: 'btn btn-primary', method: :delete %>
+                  <%= link_to "Add To Calendar", "#{@challenge.id}/ical", data: { confirm: "We will send this challenge to your email address, please add it to your calendar" }, class: "btn btn-primary" %>
                 <% else %>
                   <%= link_to 'Participate', "/participate/#{@challenge.id}", class: 'btn btn-primary', method: :post %>
                 <% end %>
@@ -58,6 +59,7 @@
                 <%= link_to 'This challenge has been archived', "/drop/#{@challenge.id}", class: 'btn btn-warning disabled', method: :delete %>
               <% end %>
             </p>
+            </div>
           </div>
         </div>
       </div>
@@ -66,6 +68,10 @@
         <p><%= @challenge.description %></p>
       </div>
 
+    
+
+    <%#= render plain: to_icalender %> 
+    
       <div class="mb-5" style="margin-top: 25px">
           <%= render 'comments/comments'%>
           <%= render 'comments/form1'%>
