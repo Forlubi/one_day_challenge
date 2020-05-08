@@ -30,13 +30,25 @@
 
         <div class="col-md-12 col-lg-6" style="margin:6rem 0 0 0">
           <div id="filters" class="filters">
-            <%= link_to "All", "/filter/#{'All'}", remote: true, class: 'active' %>
-            <%= link_to "Life", "/filter/#{'Life'}", remote: true %>
-            <%= link_to "Workout", "/filter/#{'Workout'}", remote: true %>
-            <%= link_to "Habit", "/filter/#{'Habbit'}", remote: true %>
-            <%= link_to "Study", "/filter/#{'Study'}", remote: true %>
-            <%= link_to "Philanthropy", "/filter/#{'Philanthropy'}", remote: true %>
+            <a data-filter = 'All' style = 'cursor:pointer'>All</a>
+            <a data-filter = 'Life' style = 'cursor:pointer'>Life</a>
+            <a data-filter = 'Workout' style = 'cursor:pointer'>Workout</a>
+            <a data-filter = 'Habbit' style = 'cursor:pointer'>Habit</a>
+            <a data-filter = 'Study' style = 'cursor:pointer'>Study</a>
+            <a data-filter = 'philanthropy' style = 'cursor:pointer'>Philanthropy</a>
           </div>
+          <%= form_with(url: filter_path, method: :get, remote: true) do |f| %>
+            <div class="row align-items-start">
+
+              <div class="col col-6">
+                <%= text_field_tag(:q, value = nil, options = {placeholder: "search challenge name", class: "form-control", onkeydown: "doSearch()"}) %>
+              </div>
+              <%=hidden_field_tag(:filter, nil)%>
+
+              <%= submit_tag("Search", class: "btn btn-primary", style: "display:none") %>
+              <!--        </div>-->
+            </div>
+          <% end %>
         </div>
       </div>
 
@@ -52,7 +64,7 @@
   </section><!-- End  Works Section -->
 </main><!-- End #main -->
 
-<%# <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a> %>
+
 
 
 
@@ -109,7 +121,17 @@
 <%#= render 'shared/add_btn' %>
 
 <script>
+    $('#filters a').each(function() {
+        $(this).on('click', function(){
+            $('#filter').val($(this).data("filter"))
+            doSearch()
 
+        })
+    })
+
+    function doSearch() {
+        $('form input[value="Search"]').click()
+    }
 
     // $(() => {
     //   $('img').each(function(){
@@ -140,6 +162,7 @@
     //     })
     // })
 </script>
+
 
 <%# <script>
 

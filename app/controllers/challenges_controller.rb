@@ -11,21 +11,132 @@ class ChallengesController < ApplicationController
   end
 
   def filter
-    if params[:filter] == 'Life'
-      challenges = Challenge.where(category: 'Life')
-    elsif params[:filter] == 'Workout'
-      challenges = Challenge.where(category: 'Workout')
-    elsif params[:filter] == 'Habbit'
-      challenges = Challenge.where(category: 'Habbit')
-    elsif params[:filter] == 'Study'
-      challenges = Challenge.where(category: 'Study')
-    elsif params[:filter] == 'Philanthropy'
-      challenges = Challenge.where(category: 'philanthropy')
+    text = params[:q]
+    puts text
+    puts params[:filter]+'!!!!'
+    # if params[:filter] == 'Life'
+    #   challenges = Challenge.where(category: 'Life')
+    # elsif params[:filter] == 'Workout'
+    #   challenges = Challenge.where(category: 'Workout')
+    # elsif params[:filter] == 'Habbit'
+    #   challenges = Challenge.where(category: 'Habbit')
+    # elsif params[:filter] == 'Study'
+    #   challenges = Challenge.where(category: 'Study')
+    # elsif params[:filter] == 'Philanthropy'
+    #   challenges = Challenge.where(category: 'philanthropy')
+    # else
+    #   challenges = Challenge.all
+    # end
+    # render 'challenges/filter_result', locals: {challenges: challenges, filter: params[:filter]}
+    if params[:filter] == 'All'
+      if !text.nil?
+        challenges = Challenge.where('lower(name) like ?', "%#{text.downcase}%")
+      else
+        challenges = Challenge.all
+      end
     else
-      challenges = Challenge.all
+      if !text.nil?
+        challenges = Challenge.where("category = ? AND lower(name) like ?", params[:filter], "%#{text.downcase}%")
+      else
+        challenges = Challenge.where(category: params[:filter])
+      end
     end
+
+    # elsif params[:filter] == 'Workout'
+    #   if text != ''
+    #     challenges = Challenge.where(category: 'Workout').where('lower(name) like ?', "%#{text.downcase}%")
+    #   else
+    #     challenges = Challenge.where(category: 'Workout')
+    #   end
+    # elsif params[:filter] == 'Habbit'
+    #   if text != ''
+    #     challenges = Challenge.where(category: 'Habbit').where('lower(name) like ?', "%#{text.downcase}%")
+    #   else
+    #     challenges = Challenge.where(category: 'Habbit')
+    #   end
+    # elsif params[:filter] == 'Study'
+    #   if text != ''
+    #     challenges = Challenge.where(category: 'Study').where('lower(name) like ?', "%#{text.downcase}%")
+    #   else
+    #     challenges = Challenge.where(category: 'Study')
+    #   end
+    # elsif params[:filter] == 'Philanthropy'
+    #   if text != ''
+    #     challenges = Challenge.where(category: 'Philanthropy').where('lower(name) like ?', "%#{text.downcase}%")
+    #   else
+    #     challenges = Challenge.where(category: 'philanthropy')
+    #   end
+    # else
+    #   if text != ''
+    #     challenges = Challenge.where('lower(name) like ?', "%#{text.downcase}%")
+    #   else
+    #     challenges = Challenge.all
+    #   end
+    # end
     render 'challenges/filter_result', locals: {challenges: challenges, filter: params[:filter]}
   end
+
+  # def result
+  #   current_user = User.find(params[:user_id])
+  #   puts current_user
+  #   text = params[:q]
+  #   puts text
+  #   challenge = params[:challenge_cate]
+  #   puts challenge
+  #
+  # #   if challenge == "1"
+  #     if text != ''
+  #       @challenges = current_user.challenges.where('lower(name) like ?', "%#{text.downcase}%")
+  #     else
+  #       @challenges = current_user.challenges
+  #     end
+  #   elsif challenge == "2"
+  #     if text != ''
+  #       @challenges = current_user.his_challenges.where('lower(name) like ?', "%#{text.downcase}%")
+  #     else
+  #       @challenges = current_user.his_challenges
+  #     end
+  #   else
+  #     if text != ''
+  #       @challenges = current_user.fav_challenges.where('lower(name) like ?', "%#{text.downcase}%")
+  #     else
+  #       @challenges = current_user.fav_challenges
+  #     end
+  #   end
+  #   if @challenges.size == 0
+  #     # p "="*10
+  #     # p @challenges
+  #     # p "redirect1"
+  #     # p "="*10
+  #     # redirect_to root_path
+  #     # flash[:alert] = "challenge cannot be found"
+  #     # FIXME flash persists (kaunyu)
+  #     redirect_to current_user
+  #   else
+  #     render 'users/show'
+  #   end
+  # end
+  #
+  #
+
+
+
+  # if params[:filter] == 'Life'
+  #   challenges = Challenge.where(category: 'Life')
+  # elsif params[:filter] == 'Workout'
+  #   challenges = Challenge.where(category: 'Workout')
+  # elsif params[:filter] == 'Habbit'
+  #   challenges = Challenge.where(category: 'Habbit')
+  # elsif params[:filter] == 'Study'
+  #   challenges = Challenge.where(category: 'Study')
+  # elsif params[:filter] == 'Philanthropy'
+  #   challenges = Challenge.where(category: 'philanthropy')
+  # else
+  #   challenges = Challenge.all
+  # end
+  # render 'challenges/filter_result', locals: {challenges: challenges, filter: params[:filter]}
+
+
 
   # GET /challenges/1
   # GET /challenges/1.json
