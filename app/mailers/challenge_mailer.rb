@@ -6,8 +6,8 @@ class ChallengeMailer < ApplicationMailer
     cal = Icalendar::Calendar.new
     cal.timezone.tzid = "UTC"           
     event = Icalendar::Event.new
-    event.dtstart = @challenge.deadline.days_ago(@challenge.duration)
-    event.dtend = @challenge.deadline
+    event.dtstart = @challenge.deadline.days_ago(@challenge.duration).to_date
+    event.dtend = @challenge.deadline.to_date
     attendee_params = { "CUTYPE"   => "INDIVIDUAL",
                     "ROLE"     => "REQ-PARTICIPANT",
                     "PARTSTAT" => "NEEDS-ACTION",
