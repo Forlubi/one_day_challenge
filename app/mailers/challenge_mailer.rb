@@ -8,8 +8,20 @@ class ChallengeMailer < ApplicationMailer
     event = Icalendar::Event.new
     event.dtstart = @challenge.deadline.days_ago(@challenge.duration)
     event.dtend = @challenge.deadline
-    event.organizer = User.find(@challenge.owner_id).name
-    event.attendee = "#{@challenge.name} participants"
+    attendee_params = { "CUTYPE"   => "INDIVIDUAL",
+                    "ROLE"     => "REQ-PARTICIPANT",
+                    "PARTSTAT" => "NEEDS-ACTION",
+                    # "RSVP"     => "TRUE",
+                    "CN"       => "#{@user.name}",
+                    "X-NUM-GUESTS" => "0" }
+
+    attendee_value = Icalendar::Values::Text.new("MAILTO:#{@user.email}", attendee_params)
+    cal.append_custom_property("ATTENDEE", attendee_value)
+
+    # event.organizer = User.find(@challenge.owner_id).name
+    event.organizer = "mailto:onedaychallege@gmail.com"
+    event.organizer = Icalendar::Values::CalAddress.new("mailto:onedaychallege@gmail.com", cn: "#{@challenge.name}")
+    # event.attendee = "#{@challenge.name} participants"
     event.summary = @challenge.name
     event.description = @challenge.description
     event.url = challenge_url(@challenge)
