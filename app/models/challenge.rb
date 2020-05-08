@@ -26,4 +26,15 @@ class Challenge < ApplicationRecord
     end
   end
 
+  def remind_user_checkin
+    # ParticipateIn.all.each do |challenge|
+    #   if failed?(challenge)
+    #     UserMailer.reminder_email(User.find(challenge.user_id)).deliver
+    #   end
+    # end
+    
+    # sending email testing
+    UserMailer.reminder_email(User.where(email: "anyanxie@outlook.com")).deliver
+  end
+
 end

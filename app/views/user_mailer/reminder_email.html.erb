@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi <%= @user.name %>,</h1>
+    <p>
+      Remember to check in for the following challenges you have:
+    </p>
+    <% @user.challenges.each do |challenge|%>
+      <p><%= challenge.name %></p>
+    <% end %>
+
+    <p>Go to the <%= link_to "Profile page", @user(:foo => "bar", :baz => "quux"), class: "nav-link" %> to check in</p>
+
+    <p>Regards,</p>
+    <p>Team One Day Challenge</p>
+  </body>
+</html>
