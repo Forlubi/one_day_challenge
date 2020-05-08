@@ -8,19 +8,20 @@ class ChallengeMailer < ApplicationMailer
     event = Icalendar::Event.new
     event.dtstart = @challenge.deadline.days_ago(@challenge.duration).to_date
     event.dtend = @challenge.deadline.to_date
-    attendee_params = { "CUTYPE"   => "INDIVIDUAL",
-                    "ROLE"     => "REQ-PARTICIPANT",
-                    "PARTSTAT" => "NEEDS-ACTION",
-                    # "RSVP"     => "TRUE",
-                    "CN"       => "#{@user.name}",
-                    "X-NUM-GUESTS" => "0" }
+    # attendee_params = { "CUTYPE"   => "INDIVIDUAL",
+    #                 "ROLE"     => "REQ-PARTICIPANT",
+    #                 "PARTSTAT" => "NEEDS-ACTION",
+    #                 # "RSVP"     => "TRUE",
+    #                 "CN"       => "#{@user.name}",
+    #                 "X-NUM-GUESTS" => "0" }
 
-    attendee_value = Icalendar::Values::Text.new("MAILTO:#{@user.email}", attendee_params)
-    cal.append_custom_property("ATTENDEE", attendee_value)
+    # attendee_value = Icalendar::Values::Text.new("MAILTO:#{@user.email}", attendee_params)
+    # cal.append_custom_property("ATTENDEE", attendee_value)
 
     # event.organizer = User.find(@challenge.owner_id).name
     event.organizer = "mailto:onedaychallege@gmail.com"
     event.organizer = Icalendar::Values::CalAddress.new("mailto:onedaychallege@gmail.com", cn: "#{@challenge.name}")
+    event.attendee = Icalendar::Values::CalAddress.new("mailto:#{@user.email}", cn: "#{@user.name}")
     # event.attendee = "#{@challenge.name} participants"
     event.summary = @challenge.name
     event.description = @challenge.description
@@ -31,6 +32,6 @@ class ChallengeMailer < ApplicationMailer
     cal.append_custom_property('METHOD', 'REQUEST')
     mail.attachments['challenge_cal.ics'] = { :mime_type => 'text/calendar', content: cal.to_ical }
 
-    mail(to: @user.email, subject: @challenge.name)
+    mail(to: @user.email, subject: "Calendar for #{@challenge.name}")
   end
 end

@@ -89,10 +89,10 @@ class ChallengesController < ApplicationController
   def to_icalender
     @challenge = Challenge.find(params[:challenge_id])
     ChallengeMailer.with(challenge: @challenge, user: current_user).new_challenge_email.deliver_later
+    # redirect_to(@challenge, :notice => 'Calendar sent')
     respond_to do |format|
       format.html { redirect_to @challenge, notice: 'check email' }
       format.json { render :show, status: :ok, location: @challenge }
-
     end
   end
 

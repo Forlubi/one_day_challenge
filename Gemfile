@@ -33,6 +33,7 @@ gem 'ruby-progressbar'
 
 gem 'icalendar'
 gem 'activesupport'
+gem 'sendgrid-ruby'
 
 # Use Devise for authentication
 gem 'devise'
