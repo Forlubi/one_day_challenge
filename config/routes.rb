@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   resources :participate_ins
   resources :histories
   resources :favorites
+
+  get 'challenges/:challenge_id/ical' => 'challenges#to_icalender'
+  
   resources :challenges do
     resources :comments
   end
@@ -31,5 +34,10 @@ Rails.application.routes.draw do
   post '/favorite/:challenge_id', to: 'users#favorite'
   delete '/unfavorite/:challenge_id', to: 'users#unfavorite'
 
+
   get '/filter', to: 'challenges#filter'
+
+  # get '/filter/:filter', to: 'challenges#filter'
+
+
 end

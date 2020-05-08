@@ -61,19 +61,31 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "one_day_production"
 
-  config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { :host => "one-day-brandeis.herokuapp.com" }
+  # config.action_mailer.perform_caching = false
+  # config.action_mailer.default_url_options = { :host => "one-day-brandeis.herokuapp.com" }
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   address: "smtp.gmail.com",
+  #   domain: "gmail.com",
+  #   port: 587,
+  #   # user_name: "onedaychallege@gmail.com",
+  #   # password: "OneDay!!",
+  #   user_name: ENV['OnedayEmail'],
+  #   password: ENV['OnedayEmailPwd'],
+  #   authentication: 'plain',
+  #   enable_starttls_auto: true
+  # }
+
+  # Setup the sendgrid mailer config
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    domain: "gmail.com",
-    port: 587,
-    user_name: "onedaychallege@gmail.com",
-    password: "OneDay!!",
-    # user_name: ENV['OnedayEmail'],
-    # password: ENV['OnedayEmailPwd'],
-    authentication: 'plain',
-    enable_starttls_auto: true
+    :domain => 'one-day-brandeis.herokuapp.com',
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    authentication: :plain,
+    user_name:      'apikey',
+    password:       ENV['SENDGRID_API_KEY']
   }
 
   # Don't care if the mailer can't send.

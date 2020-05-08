@@ -4,8 +4,13 @@
       <div class="square img-hover-zoom">
   
         <% if challenge.image.attached? %>
-          <img src="<%= url_for(challenge.image) %>" alt="Image" class="image"
-                onload="resize($(this))"/>
+          <% if Rails.application.config.active_storage.service == :local %>
+            <img src="<%= url_for(challenge.image) %>" alt="Image" class="image"
+                  onload="resize($(this))"/>
+          <% else %>
+            <img src="<%= challenge.image.service_url %>" alt="Image" class="image"
+                  onload="resize($(this))"/>
+          <% end %>
         <% else %>
           <img src="<%= challenge.pic_link %>" alt="Image" class="image"
                 onload="resize($(this))"/>

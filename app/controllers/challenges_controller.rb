@@ -197,6 +197,16 @@ class ChallengesController < ApplicationController
     end
   end
 
+  def to_icalender
+    @challenge = Challenge.find(params[:challenge_id])
+    ChallengeMailer.with(challenge: @challenge, user: current_user).new_challenge_email.deliver_later
+    # redirect_to(@challenge, :notice => 'Calendar sent')
+    respond_to do |format|
+      format.html { redirect_to @challenge, notice: 'check email' }
+      format.json { render :show, status: :ok, location: @challenge }
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -210,7 +220,7 @@ class ChallengesController < ApplicationController
   end
 
   def set_host_for_local_storage
-        ActiveStorage::Current.host = request.base_url if Rails.application.config.active_storage.service == :local
+    ActiveStorage::Current.host = request.base_url if Rails.application.config.active_storage.service == :local
   end
   
 end

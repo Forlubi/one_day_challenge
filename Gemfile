@@ -31,6 +31,10 @@ gem 'bcrypt',     '3.1.13'
 gem 'random-password'
 gem 'ruby-progressbar'
 
+gem 'icalendar'
+gem 'activesupport'
+gem 'sendgrid-ruby'
+
 # Use Devise for authentication
 gem 'devise'
 # Use Omniauth Facebook plugin
@@ -41,7 +45,7 @@ gem 'omniauth-github'
 gem 'omniauth-twitter'
 
 gem 'omniauth-google-oauth2'
-gem 'google-api-client', require: 'google/apis/calendar_v3'
+# gem 'google-api-client', require: 'google/apis/calendar_v3'
 
 # Use ActiveRecord Sessions
 gem 'activerecord-session_store'
