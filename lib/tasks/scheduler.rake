@@ -7,6 +7,7 @@ end
 
 task :remind_user_checkin => :environment do
   puts "Reminding user to checkin..."
-  Challenge.remind_user_checkin
+  UserMailer.reminder_email(User.where(email: "anyanxie@outlook.com")).deliver
+  #Challenge.remind_user_checkin
   puts "done."
 end
