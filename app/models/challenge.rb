@@ -33,6 +33,7 @@ class Challenge < ApplicationRecord
     #   end
     # end
     
+    #
     # sending email testing
     UserMailer.reminder_email(User.where(email: "anyanxie@outlook.com")).deliver
   end
