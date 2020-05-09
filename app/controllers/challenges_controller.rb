@@ -101,6 +101,7 @@ class ChallengesController < ApplicationController
   # DELETE /challenges/1
   # DELETE /challenges/1.json
   def destroy
+    remove_user_participation @challenge.id
     @challenge.destroy
     respond_to do |format|
       format.html { redirect_to challenges_url, notice: 'Challenge was successfully destroyed.' }

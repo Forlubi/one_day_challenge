@@ -1,0 +1,12 @@
+Hi <%= @user.name %>,
+
+Remember to check in for the following challenges you have:
+
+<% @user.challenges.each do |challenge|%>
+  <%= challenge.name %>
+<% end %>
+
+Go to the <%= link_to "Profile page", @user, class: "nav-link" %> to check in.
+
+Regards,
+Team One Day Challenge
