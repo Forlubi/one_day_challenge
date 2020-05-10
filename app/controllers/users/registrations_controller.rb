@@ -1,4 +1,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  def create
+    super
+    UserMailer.reminder_email(resource).deliver
+  end
 
   def update
     new_params = params.require(:user).permit(:email, :name, :current_password, :password, :password_confirmation, :avatar)

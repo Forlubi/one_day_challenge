@@ -2,19 +2,21 @@
 <html>
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
   </head>
   <body>
-    <h1>Hi <%= @user.name %>,</h1>
-    <p>
-      Remember to check in for the following challenges you have:
-    </p>
+    <%= image_tag"reminder.jpg" %>
+    <br>
+    <p>Hi <%= @user.name %>,<p><br>
+
+    <p>Remember to check in for the following challenges you have:</p>
     <% @user.challenges.each do |challenge|%>
-      <p><%= challenge.name %></p>
+      <p> * <%= challenge.name %></p>
     <% end %>
 
-    <p>Go to the <%= link_to "Profile page", @user, class: "nav-link" %> to check in</p>
+    <br><p>Go to the <%= link_to "Profile page", @user %> to check in</p><br>
 
     <p>Regards,</p>
-    <p>Team One Day Challenge</p>
+    <%= image_tag"footer.jpg" %>
   </body>
 </html>
