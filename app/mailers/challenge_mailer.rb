@@ -20,7 +20,7 @@ class ChallengeMailer < ApplicationMailer
 
     # event.organizer = User.find(@challenge.owner_id).name
     event.organizer = "mailto:onedaychallege@gmail.com"
-    event.organizer = Icalendar::Values::CalAddress.new("mailto:onedaychallege@gmail.com", cn: "#{@challenge.name}")
+    event.organizer = Icalendar::Values::CalAddress.new("mailto:onedaychallege@gmail.com", cn: "#{@challenge.name}@OneDayBrandeis")
     event.attendee = Icalendar::Values::CalAddress.new("mailto:#{@user.email}", cn: "#{@user.name}")
     # event.attendee = "#{@challenge.name} participants"
     event.summary = @challenge.name

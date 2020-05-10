@@ -4,10 +4,16 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
+    <h1>Hi <%= @user.name %>,</h1>
     <p>Please Add The Challenge To Your Calender. If you cannot add it from your browser, please import the attachment to you calendar App.</p>
     --------------------------
     <p>Challenge: <%= @challenge.name %></p>
     ----------
     <p>Description: <%= @challenge.description %></p>
+    ----------
+    <p>For more details, go to the <%= link_to @challenge.name, @challenge, class: "nav-link" %> page.</p>
+    ----------
+    <p>Regards,</p>
+    <p>Team One Day Challenge</p>
   </body>
 </html>
