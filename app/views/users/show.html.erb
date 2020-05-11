@@ -112,8 +112,28 @@
                 </div>
 
                 <div id="About" class="tabcontent">
-                  <h3>Acheivements</h3>
-                  <p>User's acheivements will go here</p>
+                  <h3>Achievements</h3>
+                  <div class="row">
+                    <div class="column">
+                      <% if @user.coins > 50 %>
+                        <%= image_tag("achievement/coin.png",width: '200px') %>
+                        <P> You have more than 100 Coins</P>
+                      <% end %>
+                    </div>
+                    <div class="column">
+                      <% if @user.challenge_number == 0 %>
+                        <%= image_tag("achievement/construction.png",width: '200px') %>
+                        <P> You have participate more than 5 challenges</P>
+                      <% end %>
+                    </div>
+                    <div class="column">
+                      <% if @user.chechin_number == 0 %>
+                        <%= image_tag("achievement/checkin.png",width: '200px') %>
+                        <P> You have continued check in more than 5 times</P>
+                      <% end %>
+
+                    </div>
+                  </div>
                 </div>
 
               </div>
