@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: 'notifications@example.com'
+  default from: 'onedaychallenge@noreply.com'
  
   def reminder_email(user)
     @user = user

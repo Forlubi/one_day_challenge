@@ -70,6 +70,8 @@ class ChallengesController < ApplicationController
   def create
     @challenge = Challenge.new(challenge_params)
     @challenge.owner_id = current_user.id
+    @challenge.participant_number = 0
+    @challenge.failed_number = 0
     if @challenge.image.attached?
       @challenge.pic_link = @challenge.image.service_url
     end

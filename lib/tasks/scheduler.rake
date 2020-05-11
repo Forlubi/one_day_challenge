@@ -1,14 +1,22 @@
+require 'lib/check_in_helper'
+
 desc "This task is called by the Heroku scheduler add-on"
 task :check_user_checkins => :environment do
   puts "Checking for users' checkins..."
   ParticipateIn.all.delete_if do |challenge|
-    finished = finished?(challenge) 
-    if failed?(challenge) || finished
+    if CheckInHelper.failed?(p)
       History.create!(
-        user_id: challenge.user_id,
-        challenge_id: challenge.challenge_id,
-        finished: finished)
-      true # mark for deletion
+        user_id: p.user_id,
+        challenge_id: p.challenge_id,
+        finished: false)
+      Challenge.find(p.challenge_id).first.failed_number += 1
+      true
+    elsif CheckInHelper.finished?(p)
+      History.create!(
+        user_id: p.user_id,
+        challenge_id: p.challenge_id,
+        finished: true)
+      true
     end
   end
   puts "done."
@@ -38,12 +46,18 @@ task :simulate_check_user_checkins => :environment do
   puts "[simulation] Checking Anyan's checkins for today"
   participates = User.where(email: "anyanxie@outlook.com").first.participate_ins
   participates.each do |p|
-    finished = finished?(p) 
-    if failed?(p) || finished
+    if CheckInHelper.failed?(p)
       History.create!(
         user_id: p.user_id,
         challenge_id: p.challenge_id,
-        finished: finished)
+        finished: false)
+      Challenge.find(p.challenge_id).first.failed_number += 1
+      p.destroy
+    elsif CheckInHelper.finished?(p)
+      History.create!(
+        user_id: p.user_id,
+        challenge_id: p.challenge_id,
+        finished: true)
       p.destroy
     end
   end
