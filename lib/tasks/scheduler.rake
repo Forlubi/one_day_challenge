@@ -1,7 +1,6 @@
-require 'lib/check_in_helper'
-
 desc "This task is called by the Heroku scheduler add-on"
 task :check_user_checkins => :environment do
+  include CheckInHelper
   puts "Checking for users' checkins..."
   ParticipateIn.all.delete_if do |challenge|
     if CheckInHelper.failed?(p)
@@ -43,6 +42,7 @@ task :simulate_welcome => :environment do
 end
 
 task :simulate_check_user_checkins => :environment do
+  include CheckInHelper
   puts "[simulation] Checking Anyan's checkins for today"
   participates = User.where(email: "anyanxie@outlook.com").first.participate_ins
   participates.each do |p|

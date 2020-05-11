@@ -1,4 +1,5 @@
-class CheckInHelper
+module CheckInHelper
+  class CheckInHelper
     # check if user fails to check_in a challenge
     def self.failed? participate
       return participate.updated_at != Date.today
@@ -9,4 +10,5 @@ class CheckInHelper
       duration = Challenge.find(participate.challenge_id).duration
       return participate.continuous_check_in == duration
     end
+  end
 end
