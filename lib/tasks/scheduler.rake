@@ -1,16 +1,15 @@
 desc "This task is called by the Heroku scheduler add-on"
 task :check_user_checkins => :environment do
-  include CheckInHelper
   puts "Checking for users' checkins..."
   ParticipateIn.all.delete_if do |challenge|
-    if CheckInHelper.failed?(p)
+    if failed?(p)
       History.create!(
         user_id: p.user_id,
         challenge_id: p.challenge_id,
         finished: false)
       Challenge.find(p.challenge_id).first.failed_number += 1
       true
-    elsif CheckInHelper.finished?(p)
+    elsif finished?(p)
       History.create!(
         user_id: p.user_id,
         challenge_id: p.challenge_id,
@@ -42,18 +41,17 @@ task :simulate_welcome => :environment do
 end
 
 task :simulate_check_user_checkins => :environment do
-  include CheckInHelper
   puts "[simulation] Checking Anyan's checkins for today"
   participates = User.where(email: "anyanxie@outlook.com").first.participate_ins
   participates.each do |p|
-    if CheckInHelper.failed?(p)
+    if failed?(p)
       History.create!(
         user_id: p.user_id,
         challenge_id: p.challenge_id,
         finished: false)
       Challenge.find(p.challenge_id).first.failed_number += 1
       p.destroy
-    elsif CheckInHelper.finished?(p)
+    elsif finished?(p)
       History.create!(
         user_id: p.user_id,
         challenge_id: p.challenge_id,
@@ -61,4 +59,15 @@ task :simulate_check_user_checkins => :environment do
       p.destroy
     end
   end
+end
+
+# check if user fails to check_in a challenge
+def failed? participate
+  return participate.updated_at != Date.today
+end
+
+# check if user already finished the challenge
+def finished? participate
+  duration = Challenge.find(participate.challenge_id).duration
+  return participate.continuous_check_in == duration
 end
