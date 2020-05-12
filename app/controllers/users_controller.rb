@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     # if ParticipateIn.where(user_id: current_user.id, challenge_id: params[:challenge_id]).size >= 1
       flash[:warning] = "You're already in the challenge!"
     else
-      ParticipateIn.create(user_id: current_user.id, challenge_id: params[:challenge_id])
+      ParticipateIn.create(user_id: current_user.id, challenge_id: params[:challenge_id], continuous_check_in: 0, failed: false, finished: false)
       if favorited?(current_user.id, params[:challenge_id]) 
         Favorite.where(user_id: current_user.id, challenge_id: params[:challenge_id]).first.destroy   
       end
@@ -81,7 +81,11 @@ class UsersController < ApplicationController
   end
 
   def checkin
-  
+    participation = ParticipateIn.where(user_id: current_user.id, challenge_id: params[:challenge_id]).first
+    #puts "#####continuous checkin is #{participation.continuous_check_in}"
+    participation.update(continuous_check_in: participation.continuous_check_in + 1)
+    #puts "#####continuous checkin is #{participation.continuous_check_in}"
+    redirect_to current_user
   end
 
   def test

@@ -48,6 +48,7 @@ task :simulate_check_user_checkins => :environment do
       History.create!(
         user_id: p.user_id,
         challenge_id: p.challenge_id,
+        continuous_check_in: p.continuous_check_in,
         finished: false)
       Challenge.find(p.challenge_id).first.failed_number += 1
       p.destroy
@@ -55,6 +56,7 @@ task :simulate_check_user_checkins => :environment do
       History.create!(
         user_id: p.user_id,
         challenge_id: p.challenge_id,
+        continuous_check_in: p.continuous_check_in,
         finished: true)
       p.destroy
     end
@@ -63,7 +65,7 @@ end
 
 # check if user fails to check_in a challenge
 def failed? participate
-  return participate.updated_at != Date.today
+  return participate.continuous_check_in == 0 || participate.updated_at.to_date != Date.today
 end
 
 # check if user already finished the challenge
