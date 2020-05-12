@@ -12,9 +12,9 @@ class UsersController < ApplicationController
   def show
     if current_user == @user
       @owned_challenges = Challenge.where(owner_id: current_user.id)
-      @activities = Activity.where(user_id: current_user.id)
-
+      # @activities = Activity.where(user_id: current_user.id)
     end
+      @activities = Activity.where(user_id: @user.id)
 
   end
 
