@@ -1,9 +1,27 @@
+<script>
+    function resize(img) {
+        if(img.width()>img.height()){
+            img.css({
+                "height": $(".card").first().width(),
+                width: "auto"
+            })
+        }else{
+            img.parent().css({
+                "height": $(".card").first().width()
+            })
+        }
+
+
+    }
+</script>
+
 <div class="row text-center">
   <% if !@challenges.nil?%>
     <% @challenges.all.each do |challenge| %>
       <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <%= link_to image_tag(challenge.pic_link, alt: challenge.name, class: "card-img-top"), challenge %>
+        <div class="card h-100 overflow-hidden">
+
+          <%= link_to image_tag(challenge.pic_link, alt: challenge.name, class: "card-img-top m-auto",onload:"resize($(this))"), challenge, class: "d-flex justify-content-center overflow-hidden align-items-center" %>
           <div class="card-body">
             <h4> <%= link_to challenge.name, challenge, class: "card-title" %></h4>
             <p class="card-text"><%#= challenge.description[0..100] + "..." %></p>
