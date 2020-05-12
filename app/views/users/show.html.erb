@@ -115,21 +115,21 @@
                   <h3>Achievements</h3>
                   <div class="row">
                     <div class="col">
-                      <% if @user.coins > 50 %>
-                        <%= image_tag("achievement/coin.png", class: "mb-3 img-fluid") %>
+                      <% if @user.coins >= 100 %>
+                        <%= image_tag("achievement/coin.png", class: "mb-1 img-fluid") %>
                         <p style="text-align:center; color: #2e2f37 "><strong>More than 100 Coins</strong></p>
                       <% end %>
                     </div>
                     <div class="col">
-                      <% if @user.challenge_number == 0 %>
-                        <%= image_tag("achievement/construction.png",class: "mb-3 img-fluid w-100") %>
-                        <p style="text-align:center; color: #2e2f37"><strong> You have participate more than 5 challenges</strong></p>
+                      <% if @user.challenge_number >= 5 %>
+                        <%= image_tag("achievement/construction.png",class: "mb-1 img-fluid") %>
+                        <p style="text-align:center; color: #2e2f37"><strong> Participated more than 5 challenges</strong></p>
                       <% end %>
                     </div>
                     <div class="col">
-                      <% if @user.chechin_number == 0 %>
-                        <%= image_tag("achievement/checkin.png",class: "mb-3 img-fluid") %>
-                        <p style="text-align:center; color: #2e2f37"><strong> You have continued check in more than 5 times</strong></P>
+                      <% if @user.chechin_number >= 5 %>
+                        <%= image_tag("achievement/checkin.png",class: "mb-1 img-fluid") %>
+                        <p style="text-align:center; color: #2e2f37"><strong> Checked in more than 5 times</strong></P>
                       <% end %>
 
                     </div>
