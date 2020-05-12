@@ -93,6 +93,8 @@ class UsersController < ApplicationController
     #puts "#####continuous checkin is #{participation.continuous_check_in}"
     participation.update(continuous_check_in: participation.continuous_check_in + 1)
     #puts "#####continuous checkin is #{participation.continuous_check_in}"
+    Activity.create(user_id: current_user.id, challenge_id: params[:challenge_id], relation:"Checked in")
+
     redirect_to current_user
   end
 
