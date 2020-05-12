@@ -111,13 +111,18 @@
 
 <script>
 
-    let icon = ['<i class="fas fa-crown" style="color: brown"></i>', '<i class="fas fa-crown" style="color: silver"></i>', '<i class="fas fa-crown" style="color: gold"></i>'];
-    $('.tab-pane').each(function(){
-        let count = 2;
-        $(this).find('tbody tr').each(function () {
-            if (count >= 0) {
-                $(this).find('td').first().html(icon[count--])
-            }
-        })
-    });
+
+
+    document.addEventListener("turbolinks:load", function() {
+        let icon = ['<i class="fas fa-crown" style="color: brown"></i>', '<i class="fas fa-crown" style="color: silver"></i>', '<i class="fas fa-crown" style="color: gold"></i>'];
+        $('.tab-pane').each(function(){
+            let count = 2;
+            $(this).find('tbody tr').each(function () {
+                if (count >= 0) {
+                    $(this).find('td').first().html(icon[count--])
+                }
+            })
+        });
+
+    })
 </script>
