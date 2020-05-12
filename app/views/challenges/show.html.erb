@@ -40,7 +40,7 @@
               <li>Failed: <%= @challenge.failed_number %></li>
             </ul>
 
-            <p>
+
             <div class='btn-group-vertical'>
               <% if active_challenge? @challenge %>
                 <% if participated?(current_user.id, @challenge.id) %>
@@ -58,7 +58,7 @@
               <% else %>
                 <%= link_to 'This challenge has been archived', "/drop/#{@challenge.id}", class: 'btn btn-warning disabled', method: :delete %>
               <% end %>
-            </p>
+
             </div>
           </div>
         </div>
