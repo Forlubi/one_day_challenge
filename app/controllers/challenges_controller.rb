@@ -7,7 +7,6 @@ class ChallengesController < ApplicationController
   # GET /challenges.json
   def index
     @challenges = Challenge.all
-    # FIXME logged out user can see challenges, error when try to participate (Kuan-Yu)
   end
 
   def filter

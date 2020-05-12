@@ -12,7 +12,10 @@ class UsersController < ApplicationController
   def show
     if current_user == @user
       @owned_challenges = Challenge.where(owner_id: current_user.id)
+      @activities = Activity.where(user_id: current_user.id)
+
     end
+
   end
 
   # GET /users/1/edit
@@ -51,6 +54,7 @@ class UsersController < ApplicationController
         Favorite.where(user_id: current_user.id, challenge_id: params[:challenge_id]).first.destroy   
       end
       flash[:success] = 'Challenge participated!'
+      Activity.create(user_id: current_user.id, challenge_id: params[:challenge_id], relation:"Participated")
     end
     redirect_to current_user
   end
@@ -58,6 +62,8 @@ class UsersController < ApplicationController
   def drop
     ParticipateIn.where(user_id: current_user.id, challenge_id: params[:challenge_id]).first.destroy
     flash[:success] = 'Challenge successfully dropped!'
+    Activity.create(user_id: current_user.id, challenge_id: params[:challenge_id], relation:"Dropped")
+
     redirect_to current_user
   end
 
@@ -70,6 +76,7 @@ class UsersController < ApplicationController
     else
       Favorite.create(user_id: current_user.id, challenge_id: params[:challenge_id])
       flash[:success] = 'Challenge favorited!'
+      Activity.create(user_id: current_user.id, challenge_id: params[:challenge_id], relation:"Favorited")
     end
     redirect_to current_user
   end
@@ -77,6 +84,7 @@ class UsersController < ApplicationController
   def unfavorite
     Favorite.where(user_id: current_user.id, challenge_id: params[:challenge_id]).first.destroy
     flash[:success] = 'Challenge successfully unfavorited!'
+    Activity.create(user_id: current_user.id, challenge_id: params[:challenge_id], relation:"Unfavorited")
     redirect_to current_user
   end
 
