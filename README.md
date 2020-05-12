@@ -3,3 +3,4 @@ This is a final project for the class [COSI 166b: Capstone Project for Software 
 Please visit https://one-day-brandeis.herokuapp.com/ for a live demo.
 
 ![Homepage](https://github.com/Forlubi/one_day_challenge/blob/master/home.png)
+![Intro](https://github.com/Forlubi/one_day_challenge/blob/master/intro.png)
