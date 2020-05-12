@@ -25,7 +25,6 @@ class ParticipateInsController < ApplicationController
   # POST /participate_ins.json
   def create
     @participate_in = ParticipateIn.new(participate_in_params)
-
     respond_to do |format|
       if @participate_in.save
         format.html { redirect_to @participate_in, notice: 'Participate in was successfully created.' }
