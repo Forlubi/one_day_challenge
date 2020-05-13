@@ -23,10 +23,9 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     get new_user_session_path
     post user_session_path, params: { email:    @user.email,
                                           password: '123456' }
-    assert_response :success
+
     delete destroy_user_session_path
     assert_redirected_to root_url
-    
   end
 
   test "login with valid email/invalid password" do
