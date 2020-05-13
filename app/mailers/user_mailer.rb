@@ -8,7 +8,8 @@ class UserMailer < ApplicationMailer
 
   def welcome_email(user)
     @user = user
-    #attachments.inline["welcome.jpg"] = File.read("app/assets/images/welcome.jpg")
+    #puts "####################{asset_url("/images/welcome.jpg")}"
+    #attachments.inline["welcome.jpg"] = asset_url("/images/welcome.jpg")
     mail(to: @user.email, subject: 'Welcome to One Day Challenge!')
   end
 
