@@ -24,7 +24,7 @@
             <h4> <%= link_to challenge.name, challenge, class: "card-title" %></h4>
             <p class="card-text"><%#= challenge.description[0..100] + "..." %></p>
           </div>
-          <% if current_user?(@user) %>
+          <% if current_user?(current_user) %>
               <div class="card-footer">
                 <%#= link_to "Details", challenge, class: "btn btn-primary" %>
                 <% if checkedIn?(current_user.id, challenge.id) %>

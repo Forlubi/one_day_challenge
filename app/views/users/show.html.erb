@@ -31,8 +31,7 @@
             <div class="panel-body">
               <ul class="list-group">
                 <li class="list-group-item"><strong>Email: </strong><%= @user.email %></li>
-                <li class="list-group-item"><strong>Gender:</strong><%= @user.chechin_number %></li>
-                <li class="list-group-item"><strong>Coins:</strong><%= @user.coins %></li>
+                <li class="list-group-item"><strong>Menber Since: </strong><%= @user.created_at.to_s[0...10] %></li>
               </ul>
             </div>
             <% if current_user?(@user) %>
@@ -48,9 +47,9 @@
           <div id="collapse2" class="panel-collapse collapse">
             <div class="panel-body">
               <ul class="list-group">
-                <li class="list-group-item"><strong>Email: </strong><%= @user.email %></li>
-                <li class="list-group-item"><strong>Gender:</strong><%= @user.chechin_number %></li>
                 <li class="list-group-item"><strong>Coins:</strong><%= @user.coins %></li>
+                <li class="list-group-item"><strong>Checked In Challenge: </strong><%= @user.chechin_number %></li>
+                <li class="list-group-item"><strong>Participated Challenge:</strong><%= @user.challenge_number %></li>
               </ul>
             </div>
           </div>
@@ -58,14 +57,13 @@
         <br>
         <div class="panel panel-default shadow">
           <div class="panel-heading">
-              <a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse3">Something Else?</a>
+              <a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse3">Contacts</a>
           </div>
           <div id="collapse3" class="panel-collapse collapse">
             <div class="panel-body">
               <ul class="list-group">
-                <li class="list-group-item"><strong>Email: </strong><%= @user.email %></li>
-                <li class="list-group-item"><strong>Gender:</strong><%= @user.chechin_number %></li>
-                <li class="list-group-item"><strong>Coins:</strong><%= @user.coins %></li>
+                <li class="list-group-item"><strong>Issue? Report to: </strong>oneday@customservice.com</li>
+                <li class="list-group-item"><strong>Suggestion? Submit to: </strong>oneday@feedback.com</li>
               </ul>
             </div>
           </div>
