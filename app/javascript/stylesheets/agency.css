@@ -173,10 +173,12 @@ img::-moz-selection {
 header.masthead {
   text-align: center;
   color: white;
-  /*background-image: url("https://images.unsplash.com/photo-1554960040-62d12b35555e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80");*/
-  background-image: url("https://images.unsplash.com/photo-1500933964569-522caa01ca2e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80");
-  /*background-image: url("../img/header-bg.jpg");*/
-  /*background-image: url("home/header-bg.jpg");*/
+  /* mountain */
+  /*background-image: url("https://images.unsplash.com/photo-1500933964569-522caa01ca2e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80");*/
+  /* surfing */
+  background-image: url("https://images.unsplash.com/photo-1509462025412-c798a901b75c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80");
+  /* motor bike */
+  /*background-image: url("https://images.unsplash.com/photo-1561365580-2bc6dbaa4200?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80");*/
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;

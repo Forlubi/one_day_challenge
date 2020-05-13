@@ -55,7 +55,7 @@ module UsersHelper
 
   def checkedIn?(user_id, challenge_id)
     participation = ParticipateIn.where(user_id: user_id, challenge_id: challenge_id).first
-    return participation.continuous_check_in != 0 && participation.updated_at.to_date == Date.today
+    return participation.continuous_check_in != 0 && participation.updated_at.to_date == Time.now.utc.to_date
   end
 
     # Returns true if the given user is the current user.

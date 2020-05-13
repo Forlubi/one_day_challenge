@@ -9,8 +9,14 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+<<<<<<< HEAD
           <%= link_to "Home", root_path, class: "nav-link" %>
 
+=======
+          <%= link_to "About", "#services", class: "nav-link" %>
+          <%= link_to "Team", "#team", class: "nav-link" %>
+          
+>>>>>>> 09a2bbd7ec268f8c6b2a0603561a63aa884cc79e
           <% if current_user %>
             <%= link_to "Challenges", challenges_path, class: "nav-link" %>
             <li><%= link_to "Leaderboard", users_path, class: "nav-link" %></li>

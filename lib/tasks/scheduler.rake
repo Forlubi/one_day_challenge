@@ -65,7 +65,7 @@ end
 
 # check if user fails to check_in a challenge
 def failed? participate
-  return participate.continuous_check_in == 0 || participate.updated_at.to_date != Date.today
+  return participate.continuous_check_in == 0 || participate.updated_at.to_date != Time.now.utc.to_date
 end
 
 # check if user already finished the challenge
