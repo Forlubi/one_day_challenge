@@ -1,8 +1,13 @@
 
 <% @activities.reverse_each do |activity| %>
   <div class="bs-callout bs-callout-danger">
-  <% c = Challenge.find(activity.challenge_id) %>
-  <h4><%= activity.relation %> <%= link_to c.name, challenge_url(c)%></h4>
-    <%= activity.created_at.to_s[0..15] %>
+    <% if Challenge.exists?(id: activity.challenge_id)%>
+      <% c = Challenge.find(activity.challenge_id) %>
+      <h4><%= activity.relation %> <%= link_to c.name, challenge_url(c)%></h4>
+      <%= activity.created_at.to_s[0..15] %>
+    <% else %>
+      <h4>Deleted a challenge</h4>
+      <%= activity.created_at.to_s[0..15] %>
+    <% end %>
   </div>
 <% end %>

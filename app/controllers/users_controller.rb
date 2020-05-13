@@ -10,12 +10,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    if current_user == @user
-      @owned_challenges = Challenge.where(owner_id: current_user.id)
-      # @activities = Activity.where(user_id: current_user.id)
-    end
-      @activities = Activity.where(user_id: @user.id)
-
+    @owned_challenges = Challenge.where(owner_id: params[:id])
+    @activities = Activity.where(user_id: @user.id)
   end
 
   # GET /users/1/edit
@@ -55,6 +51,7 @@ class UsersController < ApplicationController
       end
       flash[:success] = 'Challenge participated!'
       Activity.create(user_id: current_user.id, challenge_id: params[:challenge_id], relation:"Participated")
+      current_user.update(challenge_number: current_user.challenge_number + 1)
     end
     redirect_to current_user
   end
@@ -92,6 +89,7 @@ class UsersController < ApplicationController
     participation = ParticipateIn.where(user_id: current_user.id, challenge_id: params[:challenge_id]).first
     puts "#####continuous checkin is #{participation.continuous_check_in}"
     participation.update(continuous_check_in: participation.continuous_check_in + 1)
+    current_user.update(chechin_number: current_user.chechin_number + 1)
     puts "#####continuous checkin is #{participation.continuous_check_in}"
     Activity.create(user_id: current_user.id, challenge_id: params[:challenge_id], relation:"Checked in")
 
