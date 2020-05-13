@@ -4,6 +4,6 @@ course: CS166B
 semester: 2020 (Spring)
 github: https://github.com/Forlubi/one_day_challenge
 application: https://one-day-brandeis.herokuapp.com/
-presentation:  https://docs.google.com/presentation/d/1xMOZqDzFxQnqAcoKXi6nwxdVzdsMuknqBvB_h5gpHL4/
+presentation: https://docs.google.com/presentation/d/1xMOZqDzFxQnqAcoKXi6nwxdVzdsMuknqBvB_h5gpHL4/
 image: https://i.ibb.co/wLyg6tp/logo.png
 team: Kuan-Yu Chen, Mingfan Chang, Wenxiao Xiao, Anyan Xie
