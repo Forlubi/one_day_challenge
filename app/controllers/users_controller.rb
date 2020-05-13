@@ -54,12 +54,10 @@ class UsersController < ApplicationController
           Favorite.where(user_id: current_user.id, challenge_id: params[:challenge_id]).first.destroy
         end
         flash[:success] = 'Challenge participated!'
-        Activity.create(user_id: current_user.id, challenge_id: params[:challenge_id], relation:"Participated")
+        Activity.create(user_id: current_user.id, challenge_id: params[:challenge_id], relation:"Participated in")
       else
         flash[:warning] = "You don't have enough money to participate this challenge!"
       end
-      flash[:success] = 'Challenge participated!'
-      Activity.create(user_id: current_user.id, challenge_id: params[:challenge_id], relation:"Participated in")
     end
     redirect_to current_user
   end
