@@ -17,8 +17,8 @@ class PagesController < ApplicationController
   end
 
   def result
-    current_user = User.find(params[:user_id])
-    puts current_user
+    @user = User.find(params[:user_id])
+    puts @user
     text = params[:q]
     puts text
     challenge = params[:challenge_cate]
@@ -26,21 +26,21 @@ class PagesController < ApplicationController
 
     if challenge == "1"
       if text != ''
-        @challenges = current_user.challenges.where('lower(name) like ?', "%#{text.downcase}%")
+        @challenges = @user.challenges.where('lower(name) like ?', "%#{text.downcase}%")
       else
-        @challenges = current_user.challenges
+        @challenges = @user.challenges
       end
     elsif challenge == "2"
       if text != ''
-        @challenges = current_user.his_challenges.where('lower(name) like ?', "%#{text.downcase}%")
+        @challenges = @user.his_challenges.where('lower(name) like ?', "%#{text.downcase}%")
       else
-        @challenges = current_user.his_challenges
+        @challenges = @user.his_challenges
       end
     else
       if text != ''
-        @challenges = current_user.fav_challenges.where('lower(name) like ?', "%#{text.downcase}%")
+        @challenges = @user.fav_challenges.where('lower(name) like ?', "%#{text.downcase}%")
       else
-        @challenges = current_user.fav_challenges
+        @challenges = @user.fav_challenges
       end
     end
     if @challenges.size == 0
@@ -51,7 +51,7 @@ class PagesController < ApplicationController
       # redirect_to root_path
       # flash[:alert] = "challenge cannot be found"
       # FIXME flash persists (kaunyu)
-      redirect_to current_user
+      redirect_to @user
     else
       render 'users/show'
     end

@@ -1,4 +1,4 @@
-<% provide(:title, @user.name) %>
+<%# provide(:title, @user.name) %>
 <p id="notice"><%= notice %></p>
 <!-- Page Content -->
 <!-- nav bar -->
@@ -98,7 +98,7 @@
                 <button class="tablink" onclick="openPage('About', event, 'orange')">Acheivements</button>
 
                 <div id="Home" class="tabcontent">
-                  <%= render 'activities' %>
+                  <%= render 'users/activities' %>
                 </div>
 
                 <div id="News" class="tabcontent">

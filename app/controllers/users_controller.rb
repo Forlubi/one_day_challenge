@@ -11,8 +11,10 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    puts "##################user id is #{@user.id}"
     @owned_challenges = Challenge.where(owner_id: params[:id])
     @activities = Activity.where(user_id: @user.id)
+    puts "##################activities is #{@activities}"
   end
 
   # GET /users/1/edit
