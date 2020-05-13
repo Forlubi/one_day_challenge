@@ -45,6 +45,7 @@ task :simulate_check_user_checkins => :environment do
   participates = User.where(email: "anyanxie@outlook.com").first.participate_ins
   participates.each do |p|
     if failed?(p)
+      puts "######################failed challenge #{p.challenge_id}"
       History.create!(
         user_id: p.user_id,
         challenge_id: p.challenge_id,
@@ -53,6 +54,7 @@ task :simulate_check_user_checkins => :environment do
       Challenge.find(p.challenge_id).first.failed_number += 1
       p.destroy
     elsif finished?(p)
+      puts "######################finished challenge #{p.challenge_id}"
       History.create!(
         user_id: p.user_id,
         challenge_id: p.challenge_id,
