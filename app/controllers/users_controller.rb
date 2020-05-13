@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :logged_in_user, only: [:edit, :update, :index]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -45,13 +46,20 @@ class UsersController < ApplicationController
     # if ParticipateIn.where(user_id: current_user.id, challenge_id: params[:challenge_id]).size >= 1
       flash[:warning] = "You're already in the challenge!"
     else
-      ParticipateIn.create(user_id: current_user.id, challenge_id: params[:challenge_id], continuous_check_in: 0, failed: false, finished: false)
-      if favorited?(current_user.id, params[:challenge_id]) 
-        Favorite.where(user_id: current_user.id, challenge_id: params[:challenge_id]).first.destroy   
+      @challenge = Challenge.find(params[:challenge_id])
+      if current_user.coins >= @challenge.coins
+        User.find(current_user.id).update(coins: current_user.coins-@challenge.coins)
+        ParticipateIn.create(user_id: current_user.id, challenge_id: params[:challenge_id], continuous_check_in: 0, failed: false, finished: false)
+        if favorited?(current_user.id, params[:challenge_id])
+          Favorite.where(user_id: current_user.id, challenge_id: params[:challenge_id]).first.destroy
+        end
+        flash[:success] = 'Challenge participated!'
+        Activity.create(user_id: current_user.id, challenge_id: params[:challenge_id], relation:"Participated")
+      else
+        flash[:warning] = "You don't have enough money to participate this challenge!"
       end
       flash[:success] = 'Challenge participated!'
-      Activity.create(user_id: current_user.id, challenge_id: params[:challenge_id], relation:"Participated")
-      current_user.update(challenge_number: current_user.challenge_number + 1)
+      Activity.create(user_id: current_user.id, challenge_id: params[:challenge_id], relation:"Participated in")
     end
     redirect_to current_user
   end
@@ -103,7 +111,11 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      begin
+        @user = User.find(params[:id])
+      rescue
+        redirect_to root_path
+      end
     end
 
     # Only allow a list of trusted parameters through.
@@ -135,5 +147,13 @@ class UsersController < ApplicationController
 
     def checkedIn?(user_id, challenge_id)
       return ParticipateIn.where(user_id: user_id, challenge_id: challenge_id).first.updated_at == Date.today
+    end
+
+    # Confirms a logged-in user.
+    def logged_in_user
+      unless !current_user.nil?
+        flash[:danger] = "Please log in."
+        redirect_to root_path
+      end
     end
 end
