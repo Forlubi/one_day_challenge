@@ -27,6 +27,7 @@
         'opacity':'1',
         'transition': 'opacity 0.5s'
       });
+      if ($('#notice').is(':empty')) {$('#notice').hide()} 
     })
     </script>
   </head>
@@ -38,11 +39,12 @@
         <p style="margin-top:40px;padding:15px 15px 10px;"></p>
       <% end %>
       <!-- error message -->
-      <!-- 
+      <!--
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
       -->
+
       <!-- yield page content -->
       <%= yield %>
 
