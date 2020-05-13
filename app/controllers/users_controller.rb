@@ -50,12 +50,26 @@ class UsersController < ApplicationController
     # if ParticipateIn.where(user_id: current_user.id, challenge_id: params[:challenge_id]).size >= 1
       flash[:warning] = "You're already in the challenge!"
     else
-      ParticipateIn.create(user_id: current_user.id, challenge_id: params[:challenge_id], continuous_check_in: 0, failed: false, finished: false)
-      if favorited?(current_user.id, params[:challenge_id]) 
-        Favorite.where(user_id: current_user.id, challenge_id: params[:challenge_id]).first.destroy   
+      @challenge = Challenge.find(params[:challenge_id])
+      if current_user.coins >= @challenge.coins
+        User.find(current_user.id).update(coins: current_user.coins-@challenge.coins)
+        ParticipateIn.create(user_id: current_user.id, challenge_id: params[:challenge_id], continuous_check_in: 0, failed: false, finished: false)
+        if favorited?(current_user.id, params[:challenge_id])
+          Favorite.where(user_id: current_user.id, challenge_id: params[:challenge_id]).first.destroy
+        end
+        flash[:success] = 'Challenge participated!'
+        Activity.create(user_id: current_user.id, challenge_id: params[:challenge_id], relation:"Participated")
+      else
+        flash[:warning] = "You don't have enough money to participate this challenge!"
       end
+<<<<<<< HEAD
       flash[:success] = 'Challenge participated!'
       Activity.create(user_id: current_user.id, challenge_id: params[:challenge_id], relation:"Participated in")
+||||||| merged common ancestors
+      flash[:success] = 'Challenge participated!'
+      Activity.create(user_id: current_user.id, challenge_id: params[:challenge_id], relation:"Participated")
+=======
+>>>>>>> 63ef2ed2027035ccb5776fc6c1a6e3f9d53580f8
     end
     redirect_to current_user
   end

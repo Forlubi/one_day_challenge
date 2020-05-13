@@ -31,22 +31,6 @@ class ChallengesController < ApplicationController
   end
 
 
-  # if params[:filter] == 'Life'
-  #   challenges = Challenge.where(category: 'Life')
-  # elsif params[:filter] == 'Workout'
-  #   challenges = Challenge.where(category: 'Workout')
-  # elsif params[:filter] == 'Habbit'
-  #   challenges = Challenge.where(category: 'Habbit')
-  # elsif params[:filter] == 'Study'
-  #   challenges = Challenge.where(category: 'Study')
-  # elsif params[:filter] == 'Philanthropy'
-  #   challenges = Challenge.where(category: 'philanthropy')
-  # else
-  #   challenges = Challenge.all
-  # end
-  # render 'challenges/filter_result', locals: {challenges: challenges, filter: params[:filter]}
-
-
 
   # GET /challenges/1
   # GET /challenges/1.json
