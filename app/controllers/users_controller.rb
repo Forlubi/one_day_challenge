@@ -120,7 +120,6 @@ class UsersController < ApplicationController
         redirect_to root_path
       end
     end
-
     # Only allow a list of trusted parameters through.
     # def user_params
     #   params.require(:user).permit(:name, :coins)
