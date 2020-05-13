@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :logged_in_user, only: [:edit, :update, :index]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -54,7 +55,7 @@ class UsersController < ApplicationController
         Favorite.where(user_id: current_user.id, challenge_id: params[:challenge_id]).first.destroy   
       end
       flash[:success] = 'Challenge participated!'
-      Activity.create(user_id: current_user.id, challenge_id: params[:challenge_id], relation:"Participated")
+      Activity.create(user_id: current_user.id, challenge_id: params[:challenge_id], relation:"Participated in")
     end
     redirect_to current_user
   end
@@ -105,7 +106,11 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      begin
+        @user = User.find(params[:id])
+      rescue
+        redirect_to root_path
+      end
     end
 
     # Only allow a list of trusted parameters through.
@@ -137,5 +142,13 @@ class UsersController < ApplicationController
 
     def checkedIn?(user_id, challenge_id)
       return ParticipateIn.where(user_id: user_id, challenge_id: challenge_id).first.updated_at == Date.today
+    end
+
+    # Confirms a logged-in user.
+    def logged_in_user
+      unless !current_user.nil?
+        flash[:danger] = "Please log in."
+        redirect_to root_path
+      end
     end
 end

@@ -130,6 +130,12 @@ users.each do |user|
       continuous_check_in: check_in,
       failed: fail_or_not,
       finished: finish)
+    # create corresponding activity object
+    Activity.create!(
+      user_id: user.id, 
+      challenge_id: challenge.id, 
+      relation: "Participated in")
+
     # update challenge.participant_number
     challenge.participant_number += 1
     # if user fail challenge, update challenge.failed_number
@@ -147,6 +153,11 @@ users.each do |user|
     Favorite.create!(
       user_id: user.id,
       challenge_id: challenge.id)
+    # create corresponding activity object
+    Activity.create!(
+      user_id: user.id, 
+      challenge_id: challenge.id, 
+      relation: "Favorited")
   end
 
   # create user's histories
