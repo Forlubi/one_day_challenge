@@ -1,7 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super
-    UserMailer.reminder_email(resource).deliver
+    UserMailer.welcome_email(resource).deliver
   end
 
   def update
