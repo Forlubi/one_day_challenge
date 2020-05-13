@@ -9,10 +9,10 @@
         <div class="col col-4">
           <%= text_field_tag(:q, value = nil, options = {placeholder: "search challenge name", class: "form-control", onkeydown: "doSearch()"}) %>
         </div>
-<!--        <div class="col col-4">-->
+
           <%= f.submit "Search", class: "btn btn-primary", id: "search", style: "display:none" %>
           <%#= submit_tag("Search", class: "btn btn-primary") %>
-<!--        </div>-->
+
       </div>
     <% end %>
 
