@@ -10,6 +10,7 @@ class UserMailer < ApplicationMailer
     @user = user
     #puts "####################{asset_url("/images/welcome.jpg")}"
     #attachments.inline["welcome.jpg"] = asset_url("/images/welcome.jpg")
+    #attachments.inline["welcome.jpg"] = File.read(ActionController::Base.helpers.asset_path('welcome.jpg'))
     mail(to: @user.email, subject: 'Welcome to One Day Challenge!')
   end
 
