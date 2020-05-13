@@ -71,6 +71,7 @@ class ChallengesController < ApplicationController
     @challenge.owner_id = current_user.id
     @challenge.participant_number = 0
     @challenge.failed_number = 0
+    Activity.create(user_id: current_user.id, challenge_id: @challenge.id, relation:"Created")
     if @challenge.image.attached?
       @challenge.pic_link = @challenge.image.service_url
     end
@@ -103,6 +104,7 @@ class ChallengesController < ApplicationController
   # DELETE /challenges/1.json
   def destroy
     remove_user_participation @challenge.id
+    Activity.create(user_id: current_user.id, challenge_id: @challenge.id, relation:"Deleted")
     @challenge.destroy
     respond_to do |format|
       format.html { redirect_to challenges_url, notice: 'Challenge was successfully destroyed.' }
